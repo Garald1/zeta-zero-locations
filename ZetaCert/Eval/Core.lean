@@ -180,3 +180,23 @@ def goNs (N : Nat) : Nat → List Nat → Nat → List Nat
     | true => n :: (goNs N fuel (q :: qs) n ++ goNs N fuel qs m)
 
 end ZetaCert.Eval
+
+namespace ZetaCert.Eval
+
+/-- Adds the elements of a list to a bitmap, failing (`false`) on a repeated element. -/
+def bitsOf : List Nat → Nat → Bool × Nat
+  | [], b => (true, b)
+  | n :: l, b =>
+    match Nat.testBit b n with
+    | true => (false, b)
+    | false =>
+      let b' := Nat.lor b (Nat.pow 2 n)
+      force b' (bitsOf l b')
+
+/-- The enumeration `goNs N fuel ps 1` lists each of `2, …, N` exactly once. -/
+def enumOK (N fuel : Nat) (ps : List Nat) : Bool :=
+  let r1 := bitsOf (goNs N fuel ps 1) 0
+  let r2 := bitsOf (List.range' 2 (N - 1)) 0
+  r1.1 && r2.1 && Nat.beq r1.2 r2.2
+
+end ZetaCert.Eval
