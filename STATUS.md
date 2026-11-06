@@ -23,10 +23,19 @@
   ran out of memory (12 parallel kernel checks at N up to 1789); the certificate generation running
   alongside was stopped too. No errors. Build legs and certificate modules in smaller groups.
 
-Next step: finish `gen_zero_modules.py` for 7000–8000 (U = 64003/8), 8000–9000, 9000–10000
-(U = 40001/4), and `gen_window.py` for 6000–10000; build legs a few at a time; build
-W1000to2000 + Zeros1000to2000Solution first and fix the generated proofs; then the other ranges,
-`#print axioms`, comparator per configuration (record times; Count10000 replays everything).
+- Later the same night: all certificates (10 143 + the 3 extra zeros), windows and solutions
+  generated. **`Zeros1000to2000` solved**: `lake build Zeros1000to2000Solution` clean on the first
+  try; `#print axioms` (solution/CheckAxioms1000to2000.lean): standard three for all theorems.
+  Range 1000–2000 build: 7 min 49 s wall at 4 processes (35 CPU-min).
+- Memory per process (one module, `/usr/bin/time -v`): 40 leg points at T ≈ 10⁴: 8.1 GB, 2 min 27 s;
+  50 certificates near t ≈ 10⁴: 8.4 GB, 3 min 11 s. Hence `scripts/build_limited.sh P mods`
+  (≤ P concurrent `lake build`s, leg chunks listed individually since a leg's top module would build
+  all its chunks at once): P = 3 below 6000, P = 2 above.
+
+Next step: the builds of 2000–10000 and `Count10000Solution` (driver: build each range's leg
+chunks and certificates with build_limited.sh, then legs, window, solution); fix any generated
+proof that fails; `#print axioms`; then comparator runs one at a time (not alongside builds: ~7 GB
+each).
 
 ## 2026-11-06, night: M3 done: `Zeros0to1000` passes the comparator (NanoDa + Lean kernel)
 
