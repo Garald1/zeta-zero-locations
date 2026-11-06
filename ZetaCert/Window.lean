@@ -202,6 +202,20 @@ theorem ncount_window {L U : ℝ} {n : ℕ} (h1 : 1 ≤ L) (hLU : L < U)
     exact_mod_cast this
   omega
 
+/-- `ncount_window` with the enclosure of `2π (muPrim U - muPrim L)` given as `|X - Y| ≤ E`. -/
+theorem ncount_window' {L U : ℝ} {n : ℕ} (h1 : 1 ≤ L) (hLU : L < U)
+    (hlegL : ∀ σ ∈ Icc (1 / 2 : ℝ) 2, 0 < (riemannZeta (σ + L * I)).re)
+    (hlegU : ∀ σ ∈ Icc (1 / 2 : ℝ) 2, 0 < (riemannZeta (σ + U * I)).re)
+    {Y E α1 β1 α2 β2 : ℝ}
+    (hX : |2 * Real.pi * (muPrim U - muPrim L) - Y| ≤ E)
+    (ha1 : α1 ≤ (riemannZeta (1 / 2 + L * I)).arg ∧ (riemannZeta (1 / 2 + L * I)).arg ≤ β1)
+    (ha2 : α2 ≤ (riemannZeta (1 / 2 + U * I)).arg ∧ (riemannZeta (1 / 2 + U * I)).arg ≤ β2)
+    (hlo : Real.pi * ((n : ℝ) - 1) < (Y - E) / 2 - 6 * (1 / L - 1 / U) + α2 - β1)
+    (hhi : (Y + E) / 2 + 6 * (1 / L - 1 / U) + β2 - α1 < Real.pi * ((n : ℝ) + 1)) :
+    Zeta23.Ncount L U = n := by
+  have h := abs_le.mp hX
+  exact ncount_window h1 hLU hlegL hlegU ⟨by linarith [h.1], by linarith [h.2]⟩ ha1 ha2 hlo hhi
+
 /-! ## Assembly in a window -/
 
 /-- Hypotheses on the list `ws` of the certified zeros in the window `(L, U]`. -/
