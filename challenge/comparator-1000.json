@@ -1,0 +1,16 @@
+{
+  "challenge_module": "Challenge1000",
+  "solution_module": "Solution1000",
+  "theorem_names": [
+    "ZetaZeros1000.zeros_up_to_1000_located",
+    "ZetaZeros1000.zeros_up_to_1000_unique",
+    "ZetaZeros1000.zeros_up_to_1000_count"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

@@ -1,0 +1,22 @@
+zeta-zero-locations
+Copyright (c) 2026 Harald Helfgott.
+
+This repository contains code copied from the following projects, each under its own licence.
+Copied files keep their original headers.
+
+* teal-sea/zeta-lab, commit b09fa4dd2f2182cf14b248e7ffc64ff03df2c534, MIT License
+  (LICENSE-zeta-lab, Copyright (c) 2026 Thomas Lince):
+  - ZetaLean/{Rigor,IntervalExp,IntervalCExp,HardyZ}.lean   (from lean/ZetaLean/)
+  - HardyFirstZero/                                          (from hunts/hardy_first_zero/lean/)
+  - HardyTenZeros/                                           (from hunts/hardy_ten_zeros/lean/)
+  - RHHeight.lean, RHHeight/, RHHeight100/                   (from hunts/rh_height_lean/lean/)
+  - vendor/zeta23/ (zeta-lab's contained copy of anthropics/zeta-23-lean, Apache License 2.0,
+    with its own LICENSE, NOTICE, UPSTREAM.md and AUDIT.md; it in turn contains code ported from
+    PrimeNumberTheoremAnd, Apache License 2.0)
+
+* antoine-olivier/rh-up-to-15-lean, commit dec8fa913b6c972c2d16f4d23f54d2174cef7718,
+  Apache License 2.0 (LICENSE-rh-up-to-15-lean):
+  - ZetaZeros/{EM2,EMDeriv,Deriv}.lean (import of PNT+ redirected to vendor/zeta23's copy)
+
+* teorth/IEANTN, commit 466b41b28ecc224398cf53a99c5fe9618131398b, Apache License 2.0:
+  lemmas used are cited in the files that restate them.
