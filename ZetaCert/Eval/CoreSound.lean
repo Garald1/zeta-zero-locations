@@ -63,6 +63,8 @@ theorem vO_O : vO O = 0 := by
 theorem vO_ONE_O : vO (Nat.add ONE O) = 1 := by
   apply vO_eq_of_cast; rw [O_eq, ONE_eq]; push_cast; ring
 
+theorem vO_ONE_add_O : vO (ONE + O) = 1 := vO_ONE_O
+
 private theorem nat_sub_cast {a b : ℕ} (h : (b : ℝ) ≤ a) : ((a - b : ℕ) : ℝ) = a - b := by
   have : b ≤ a := by exact_mod_cast h
   push_cast [this]; ring
