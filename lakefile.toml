@@ -1,6 +1,6 @@
 name = "ZetaCert"
 version = "0.1.0"
-defaultTargets = ["ZetaCert"]
+defaultTargets = ["ZetaCert", "Zeros0to1000", "Zeros0to1000Solution"]
 
 [leanOptions]
 pp.unicode.fun = true

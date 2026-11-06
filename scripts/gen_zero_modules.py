@@ -5,7 +5,10 @@ Each theorem `z_<i>` states, for the i-th listed ordinate m_i of the challenge f
 and is proved by `zc_spec` with a `decide +kernel` certificate. The parameters (centre G, cut-off N,
 EM order k, halvings K) are candidate data computed here; the kernel re-checks everything.
 
-Usage: python3 scripts/gen_zero_modules.py 1000|10000 [extra-data-file]
+Usage: python3 scripts/gen_zero_modules.py <a> <b> [extra-data-file]
+  reads challenge/Zeros<a>to<b>.lean; writes ZetaCert/Zeros<a>to<b>/Z<j>.lean
+  (the existing ZetaCert/Zeros1000/ was generated from the earlier Challenge1000.lean, whose
+  list is identical to that of Zeros0to1000.lean)
 """
 import sys, re, os
 from mpmath import mp, mpf
@@ -13,15 +16,16 @@ sys.path.insert(0, 'scripts')
 from zeroparams import params
 
 mp.dps = 60
-T = int(sys.argv[1])
-chal = open(f'challenge/Challenge{T}.lean').read()
-body = chal[chal.index(f'def ord{T}_0'):chal.index(f'def ordinates{T}')]
+A, B = int(sys.argv[1]), int(sys.argv[2])
+T = f'{A}to{B}'
+chal = open(f'challenge/Zeros{T}.lean').read()
+body = chal[chal.index('def ord0'):chal.index('def ordinates')]
 ms = [int(x) for x in re.findall(r'(\d{20,})', body)]
-fn = 'data/zeros_T1000.txt' if T == 1000 else 'data/zeros_T10000.txt'
-gs = [l.split()[1] for l in open(fn) if not l.startswith('#')]
+allg = [l.split()[1] for l in open('data/zeros_T10000.txt') if not l.startswith('#')]
+gs = [g for g in allg if A < mpf(g) <= B]
 extra = []
-if len(sys.argv) > 2:
-    extra = [l.split()[1] for l in open(sys.argv[2]) if not l.startswith('#')]
+if len(sys.argv) > 3:
+    extra = [l.split()[1] for l in open(sys.argv[3]) if not l.startswith('#')]
 assert len(ms) == len(gs), (len(ms), len(gs))
 for m, g in zip(ms, gs):
     assert int(mp.nint(mpf(g) * 10**24)) == m
