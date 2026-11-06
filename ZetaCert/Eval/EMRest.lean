@@ -76,4 +76,43 @@ def remR1 (N G : Nat) (bern : List (Int × Nat)) (k : Nat) : GZ :=
   ((-(((N * 2 ^ 288 : Nat) : Int) * ((2 ^ 158 : Int) - (G : Int) * G))) / w2 + sd.1,
    (-((N * G * 2 ^ 368 : Nat) : Int)) / w2 + sd.2)
 
+/-! ## General real part `σ = S / 2^80` -/
+
+/-- `2^80 (s + m)` at `s = (S + iG)/2^80`. -/
+@[inline] def facZS (S G m : Nat) : GZ := (((S + m * 2 ^ 80 : Nat) : Int), (G : Int))
+
+def pochZS (S G : Nat) : Nat → GZ
+  | 0 => (1, 0)
+  | m + 1 => gmul (pochZS S G m) (facZS S G m)
+
+def dpochZS (S G : Nat) : Nat → GZ
+  | 0 => (0, 0)
+  | m + 1 => gadd (gmul (dpochZS S G m) (facZS S G m)) (gsmul (2 ^ 80) (pochZS S G m))
+
+def sumPS (S N G : Nat) (bern : List (Int × Nat)) (k : Nat) : GZ :=
+  ((List.range (k + 1)).map (fun i => emTermZ N bern i (pochZS S G (2 * i + 1)))).foldr gadd (0, 0)
+
+def sumDS (S N G : Nat) (bern : List (Int × Nat)) (k : Nat) : GZ :=
+  ((List.range (k + 1)).map (fun i => emTermZ N bern i (dpochZS S G (2 * i + 1)))).foldr gadd (0, 0)
+
+/-- `2^80 (σ - 1)`. -/
+@[inline] def wsZ (S : Nat) : Int := (S : Int) - 2 ^ 80
+
+/-- `|2^80 (s - 1)|^2`. -/
+@[inline] def W2S (S G : Nat) : Nat := (wsZ S).natAbs * (wsZ S).natAbs + G * G
+
+/-- `Rm N k s` at scale `2^128`, `s = (S + iG)/2^80`. -/
+def remRS (S N G : Nat) (bern : List (Int × Nat)) (k : Nat) : GZ :=
+  let sp := sumPS S N G bern k
+  let w := ((W2S S G : Nat) : Int)
+  ((((N * 2 ^ 208 : Nat) : Int) * wsZ S) / w - 2 ^ 127 + sp.1,
+   (-((N * G * 2 ^ 208 : Nat) : Int)) / w + sp.2)
+
+/-- `R1m N k s` at scale `2^128`. -/
+def remR1S (S N G : Nat) (bern : List (Int × Nat)) (k : Nat) : GZ :=
+  let sd := sumDS S N G bern k
+  let w2 := ((W2S S G * W2S S G : Nat) : Int)
+  ((-(((N * 2 ^ 288 : Nat) : Int) * (wsZ S * wsZ S - (G : Int) * G))) / w2 + sd.1,
+   (((N * G * 2 ^ 289 : Nat) : Int) * wsZ S) / w2 + sd.2)
+
 end ZetaCert.Eval

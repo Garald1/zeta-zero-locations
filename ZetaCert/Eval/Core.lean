@@ -200,3 +200,29 @@ def enumOK (N fuel : Nat) (ps : List Nat) : Bool :=
   r1.1 && r2.1 && Nat.beq r1.2 r2.2
 
 end ZetaCert.Eval
+
+namespace ZetaCert.Eval
+
+/-- `x^j` for a plain `x` at scale `2^-128`, by binary powering (floor-rounded products). -/
+def powPP (x : Nat) : Nat → Nat → Nat
+  | 0, _ => ONE
+  | fuel + 1, j =>
+    match j with
+    | 0 => ONE
+    | _ =>
+      let y := powPP x fuel (j / 2)
+      let y2 := mulPP y y
+      match j % 2 with
+      | 0 => y2
+      | _ => mulPP y2 x
+
+/-- `x ≈ p^{-1/q}` from below: `x^q p ≤ 2^(128 q) < (x+1)^q p`. -/
+def rootOK (p x q : Nat) : Bool :=
+  Nat.ble (x ^ q * p) (2 ^ (128 * q)) && Nat.blt (2 ^ (128 * q)) ((x + 1) ^ q * p)
+
+/-- Prime data at real part `σ = j/q`: `(p, x, L) ↦ (p, x^j, L)`. -/
+def dataSigma (j : Nat) : List (Nat × Nat × Nat) → List (Nat × Nat × Nat)
+  | [] => []
+  | (p, x, L) :: ds => (p, powPP x 16 j, L) :: dataSigma j ds
+
+end ZetaCert.Eval
