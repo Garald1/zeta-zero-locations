@@ -1,5 +1,20 @@
 # STATUS (progress log; newest entry first)
 
+## 2026-11-06, night: NanoDa test passed; leg, Γ increment and count up to T₂ done
+
+- **M2 addendum (NanoDa).** `scripts/run-comparator.sh test/comparator-toy.json` on the toy pair
+  `test/ToyChallenge.lean` / `test/ToySolution.lean` (zero #1 near 14.13, N = 17, and zero #10142
+  near 9998.85, N = 2473, k = 60): "nanoda kernel accepts the solution", "Lean default kernel accepts
+  the solution", "Your solution is okay!". Wall 6 min 21 s, user 499 s, peak RSS 6.7 GB (most of it
+  the export and replay of the Mathlib closure). No design change needed. `scripts/landrun-wrapper.sh`
+  (from zeta-23-lean) patched: Comparator v4.35.0-rc2 passes the outer `--` itself.
+- `ZetaCert.Leg1000.leg`: Re ζ(σ + iT₂) > 0 on [1/2, 2], T₂ = 512069/512 (220 leg points, about
+  2.5 min wall to build). `ZetaCert.Count1000.gamma_increment`: 619.55 ≤ ∫_{100}^{T₂} μ ≤ 619.9;
+  `ZetaCert.Count1000.ncount`: `Zeta23.Ncount 100 T₂ = 620` (only Re ζ(1/2+iT₂) > 0 is needed for
+  the argument there).
+
+Next step: assembly of the three theorems of `Zeros0to1000` (solution module, comparator run).
+
 ## 2026-11-06, evening: revised handoff imported (statements split for Palomar)
 
 From Harald's revised handoff (~/Documents/lean/zeta-new/zeta-cert): `challenge/` replaced by the
