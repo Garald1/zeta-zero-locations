@@ -114,3 +114,8 @@ roots = ["ToyChallenge"]
 name = "ToySolution"
 srcDir = "test"
 roots = ["ToySolution"]
+
+[[lean_lib]]
+name = "Zeros0to1000Solution"
+srcDir = "solution"
+roots = ["Zeros0to1000Solution"]
