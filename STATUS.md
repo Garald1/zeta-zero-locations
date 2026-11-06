@@ -1,5 +1,16 @@
 # STATUS (progress log; newest entry first)
 
+## 2026-11-06, night: M3 done: `Zeros0to1000` passes the comparator (NanoDa + Lean kernel)
+
+- `scripts/run-comparator.sh challenge/comparator-Zeros0to1000.json`: "nanoda kernel accepts the
+  solution", "Lean default kernel accepts the solution", "Your solution is okay!". Wall 58 min 34 s
+  (user 7315 s, 214% CPU, dominated by the replay of the 649 certificates and the leg), peak RSS
+  6.8 GB. Each of the nine other ranges has about 1000+ zeros at larger t (N up to ~3000), so
+  expect several hours per range in the comparator; within PLAN §6's budget but to be measured.
+
+Next step: M4. Generate the certificates for Zeros1000to2000 (`scripts/gen_zero_modules.py 1000
+2000`), the boundary legs (PLAN §1.2; better T₂ near 8000), window version of the assembly.
+
 ## 2026-11-06, night: `Zeros0to1000` proved (comparator run pending)
 
 - `solution/Zeros0to1000Solution.lean` proves `Zeros0to1000.located`, `.unique`, `.count`.
