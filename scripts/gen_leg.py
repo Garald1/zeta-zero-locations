@@ -89,7 +89,7 @@ with open(f'ZetaCert/{name}.lean', 'w') as f:
     j0, H0 = chunks[0][0][0], chunks[0][0][1]; j1, H1 = chunks[-1][-1][0], chunks[-1][-1][1]
     f.write(f"theorem leg_all : ∀ σ ∈ Icc (({j0} : ℕ) / 4096 - ({H0} : ℝ) / 4096) (({j1} : ℕ) / 4096 + ({H1} : ℝ) / 4096),\n"
             f"    ({P}) σ :=\n  {chain}\n\n")
-    f.write(f"theorem leg : ∀ σ ∈ Icc (1 / 2 : ℝ) 2, 0 < (riemannZeta (σ + (({num} : ℝ) / {den}) * I)).re := by\n"
+    f.write(f"theorem leg : ∀ σ ∈ Icc (1 / 2 : ℝ) 2, 0 < (riemannZeta (σ + ((({num} : ℝ) / {den} : ℝ) : ℂ) * I)).re := by\n"
             f"  intro σ hσ\n"
             f"  have h := leg_all σ ⟨by norm_num at hσ ⊢; linarith [hσ.1], by norm_num at hσ ⊢; linarith [hσ.2]⟩\n"
             f"  have e : ((({G} : ℕ) : ℝ) / 2 ^ 80 : ℝ) = ({num} : ℝ) / {den} := by norm_num\n"
