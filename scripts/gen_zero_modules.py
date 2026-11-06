@@ -5,8 +5,10 @@ Each theorem `z_<i>` states, for the i-th listed ordinate m_i of the challenge f
 and is proved by `zc_spec` with a `decide +kernel` certificate. The parameters (centre G, cut-off N,
 EM order k, halvings K) are candidate data computed here; the kernel re-checks everything.
 
-Usage: python3 scripts/gen_zero_modules.py <a> <b> [extra-data-file]
-  reads challenge/Zeros<a>to<b>.lean; writes ZetaCert/Zeros<a>to<b>/Z<j>.lean
+Usage: python3 scripts/gen_zero_modules.py <a> <b> [U]
+  reads challenge/Zeros<a>to<b>.lean; writes ZetaCert/Zeros<a>to<b>/Z<j>.lean. With U = num/den
+  (the top of the counting window, U > b), the zeros in (b, U] (from data/zeros_T10000.txt and
+  data/zeros_above_10000.txt) are appended as z_{n+1}, ...
   (the existing ZetaCert/Zeros1000/ was generated from the earlier Challenge1000.lean, whose
   list is identical to that of Zeros0to1000.lean)
 """
@@ -25,7 +27,9 @@ allg = [l.split()[1] for l in open('data/zeros_T10000.txt') if not l.startswith(
 gs = [g for g in allg if A < mpf(g) <= B]
 extra = []
 if len(sys.argv) > 3:
-    extra = [l.split()[1] for l in open(sys.argv[3]) if not l.startswith('#')]
+    un, ud = map(int, sys.argv[3].split('/'))
+    above = [l.split()[1] for l in open('data/zeros_above_10000.txt') if not l.startswith('#')]
+    extra = sorted({g for g in allg + above if B < mpf(g) <= mpf(un) / ud}, key=mpf)
 assert len(ms) == len(gs), (len(ms), len(gs))
 for m, g in zip(ms, gs):
     assert int(mp.nint(mpf(g) * 10**24)) == m

@@ -38,15 +38,25 @@ def E1f(N, k, t):
     return pr / mfact(2*k+2) * abs(mbern(2*k+2)) / mpf(N)**(2*k+1) / (2*k+1)
 
 
+def _ok(N, t):
+    for k in range(1, 61):
+        if E0f(N, k, t) <= mpf('1e-23') and E1f(N, k, t) <= mpf('1e-8'):
+            return k
+    return None
+
+
 def choose(t):
-    """smallest prime N (and k ≤ 60) with E0 ≤ 1e-23 and E1 ≤ 1e-8"""
-    best = None
-    for N in PRIMES:
-        if N < 5: continue
-        for k in range(1, 61):
-            if E0f(N, k, t) <= mpf('1e-23') and E1f(N, k, t) <= mpf('1e-8'):
-                return N, k
-    raise ValueError("no parameters")
+    """a small prime N (and k ≤ 60) with E0 ≤ 1e-23 and E1 ≤ 1e-8: binary search over the primes
+    (the errors decrease with N); the smallest such N when that predicate is monotone"""
+    ps = [p for p in PRIMES if p >= 5]
+    lo, hi = 0, len(ps) - 1
+    if _ok(ps[hi], t) is None:
+        raise ValueError("no parameters")
+    while lo < hi:
+        mid = (lo + hi) // 2
+        if _ok(ps[mid], t) is None: lo = mid + 1
+        else: hi = mid
+    return ps[lo], _ok(ps[lo], t)
 
 
 def params(gstr, m):
