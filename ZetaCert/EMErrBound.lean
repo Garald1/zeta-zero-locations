@@ -94,4 +94,78 @@ theorem emErr_circle_le {N : ℕ} (hN : 0 < N) (k : ℕ) {γ : ℝ} (hγ : 2 ≤
         positivity
     _ = _ := by ring
 
+/-! ## General real part `σ ≥ 1/2` -/
+
+theorem emErr_center_le_gen {N : ℕ} (hN : 0 < N) (k : ℕ) {σ γ v : ℝ} (hσ : 1 / 2 ≤ σ) (hγ : 0 ≤ γ)
+    (hv : (N : ℝ) ^ (-(1 / 2 : ℝ)) ≤ v) :
+    emErr N k σ γ ≤ (∏ i ∈ Finset.range (2 * k + 2), (σ + i + γ)) /
+      ((2 * k + 2).factorial : ℝ) * |(bernoulli (2 * k + 2) : ℝ)| * (v / (N : ℝ) ^ (2 * k + 1)) /
+      (σ + 2 * k + 1) := by
+  unfold emErr
+  have hNR : (0 : ℝ) < N := by exact_mod_cast hN
+  have hN1 : (1 : ℝ) ≤ N := by exact_mod_cast hN
+  have hp : ∏ i ∈ Finset.range (2 * k + 2), (|σ + (i : ℝ)| + |γ|) =
+      ∏ i ∈ Finset.range (2 * k + 2), (σ + (i : ℝ) + γ) := by
+    refine Finset.prod_congr rfl fun i _ => ?_
+    rw [abs_of_nonneg (by positivity), abs_of_nonneg hγ]
+  rw [hp, exp_mul_log_nat hN]
+  have he : (N : ℝ) ^ (-(σ + ((2 * k + 2 : ℕ) : ℝ)) + 1) ≤ v / (N : ℝ) ^ (2 * k + 1) := by
+    rw [show -(σ + ((2 * k + 2 : ℕ) : ℝ)) + 1 = -σ + -((2 * k + 1 : ℕ) : ℝ) by push_cast; ring,
+      Real.rpow_add hNR, Real.rpow_neg hNR.le ((2 * k + 1 : ℕ) : ℝ), Real.rpow_natCast, ← div_eq_mul_inv]
+    apply div_le_div_of_nonneg_right _ (by positivity)
+    refine le_trans ?_ hv
+    exact Real.rpow_le_rpow_of_exponent_le hN1 (by linarith)
+  have hden : (σ + ((2 * k + 2 : ℕ) : ℝ) - 1) = σ + 2 * k + 1 := by push_cast; ring
+  rw [hden]
+  have h0 : 0 ≤ (∏ i ∈ Finset.range (2 * k + 2), (σ + (i : ℝ) + γ)) /
+      ((2 * k + 2).factorial : ℝ) * |(bernoulli (2 * k + 2) : ℝ)| := by
+    have : ∀ i ∈ Finset.range (2 * k + 2), (0 : ℝ) ≤ σ + i + γ := fun i _ => by positivity
+    have := Finset.prod_nonneg this
+    positivity
+  have h1 : (0 : ℝ) < σ + 2 * k + 1 := by positivity
+  rw [mul_div_assoc _ (v / (N : ℝ) ^ (2 * k + 1))]
+  apply mul_le_mul_of_nonneg_left _ h0
+  exact div_le_div_of_nonneg_right he h1.le
+
+theorem emErr_circle_le_gen {N : ℕ} (hN : 0 < N) (k : ℕ) {σ γ : ℝ} (hσ : 1 / 2 ≤ σ) (hγ : 2 ≤ γ) {w : ℂ}
+    (hw : w ∈ sphere ((σ : ℂ) + γ * I) (1 / 4)) :
+    ‖riemannZeta w - emMain N k w‖ ≤ (∏ i ∈ Finset.range (2 * k + 2), (σ + i + 1 / 2 + γ)) /
+      ((2 * k + 2).factorial : ℝ) * |(bernoulli (2 * k + 2) : ℝ)| / (N : ℝ) ^ (2 * k + 1) /
+      (2 * k + 1) := by
+  rw [mem_sphere, dist_eq_norm] at hw
+  have hre := Complex.abs_re_le_norm (w - ((σ : ℂ) + γ * I))
+  have him := Complex.abs_im_le_norm (w - ((σ : ℂ) + γ * I))
+  simp only [Complex.sub_re, Complex.add_re, Complex.sub_im, Complex.add_im, Complex.mul_re,
+    Complex.mul_im, Complex.ofReal_re, Complex.ofReal_im, Complex.I_re, Complex.I_im, hw] at hre him
+  norm_num at hre him
+  rw [abs_le] at hre him
+  have hwre : 0 < w.re := by linarith
+  have hw1 : w ≠ 1 := by
+    intro h; rw [h] at him; simp at him; linarith
+  refine (riemannZeta_sub_emMain_le hN hwre hw1 k).trans ?_
+  unfold emErr
+  have hNR : (1 : ℝ) ≤ N := by exact_mod_cast hN
+  have hp : ∏ i ∈ Finset.range (2 * k + 2), (|w.re + (i : ℝ)| + |w.im|) ≤
+      ∏ i ∈ Finset.range (2 * k + 2), (σ + (i : ℝ) + 1 / 2 + γ) := by
+    apply Finset.prod_le_prod₀ (fun i _ => by positivity)
+    intro i _
+    rw [abs_of_pos (by positivity), abs_of_pos (by linarith)]
+    linarith
+  have he : Real.exp ((-(w.re + ((2 * k + 2 : ℕ) : ℝ)) + 1) * Real.log N) ≤ 1 / (N : ℝ) ^ (2 * k + 1) := by
+    rw [exp_mul_log_nat hN, one_div, ← Real.rpow_natCast, ← Real.rpow_neg (by linarith)]
+    apply Real.rpow_le_rpow_of_exponent_le hNR
+    push_cast; linarith
+  have hden : (2 * k + 1 : ℝ) ≤ w.re + ((2 * k + 2 : ℕ) : ℝ) - 1 := by push_cast; linarith
+  have hB : 0 ≤ |(bernoulli (2 * k + 2) : ℝ)| := abs_nonneg _
+  have hf : (0 : ℝ) < ((2 * k + 2).factorial : ℝ) := by positivity
+  calc (∏ i ∈ Finset.range (2 * k + 2), (|w.re + (i : ℝ)| + |w.im|)) / ((2 * k + 2).factorial : ℝ)
+        * |(bernoulli (2 * k + 2) : ℝ)| *
+        (Real.exp ((-(w.re + ((2 * k + 2 : ℕ) : ℝ)) + 1) * Real.log N) / (w.re + ((2 * k + 2 : ℕ) : ℝ) - 1))
+      ≤ (∏ i ∈ Finset.range (2 * k + 2), (σ + (i : ℝ) + 1 / 2 + γ)) / ((2 * k + 2).factorial : ℝ)
+        * |(bernoulli (2 * k + 2) : ℝ)| * ((1 / (N : ℝ) ^ (2 * k + 1)) / (2 * k + 1)) := by
+        gcongr
+        have : 0 < w.re + ((2 * k + 2 : ℕ) : ℝ) - 1 := by push_cast; linarith
+        positivity
+    _ = _ := by ring
+
 end ZetaCert
