@@ -1,0 +1,8 @@
+{
+  "challenge_module": "ToyChallenge",
+  "solution_module": "ToySolution",
+  "theorem_names": ["Toy.zero1", "Toy.zero10142"],
+  "definition_names": [],
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"],
+  "enable_nanoda": true
+}

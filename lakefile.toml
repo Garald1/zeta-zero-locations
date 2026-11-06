@@ -104,3 +104,13 @@ name = "Count10000"
 srcDir = "challenge"
 roots = ["Count10000"]
 
+# Toy pair for the NanoDa/comparator test (milestone M2).
+[[lean_lib]]
+name = "ToyChallenge"
+srcDir = "test"
+roots = ["ToyChallenge"]
+
+[[lean_lib]]
+name = "ToySolution"
+srcDir = "test"
+roots = ["ToySolution"]
