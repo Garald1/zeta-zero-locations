@@ -1,0 +1,15 @@
+{
+  "challenge_module": "Count10000",
+  "solution_module": "Count10000Solution",
+  "theorem_names": [
+    "Count10000.on_line_and_simple",
+    "Count10000.count"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

@@ -1,5 +1,29 @@
 # STATUS (progress log; newest entry first)
 
+## 2026-11-06, evening: revised handoff imported (statements split for Palomar)
+
+From Harald's revised handoff (~/Documents/lean/zeta-new/zeta-cert): `challenge/` replaced by the
+eleven files `Zeros{a}to{b}.lean` (ten ranges of 1000) and `Count10000.lean` with their comparator
+configurations; the old `Challenge1000/10000.lean` and configs removed (they had needed no syntax
+fixes, and none are needed now: all eleven elaborate unchanged, only `sorry` warnings). `scripts/`
+(new `scan_boundary_legs.py`, revised `gen_challenge.py`), PLAN.md, CLAUDE.md and README.md
+updated; lakefile now declares the eleven challenge libraries. The 649 ordinates of
+`Zeros0to1000` are exactly those already certified in `ZetaCert/Zeros1000/`.
+Consequences from the new PLAN: M2 now includes a comparator run *with NanoDa* on one certificate
+near 14.13 and one near 10⁴ (Palomar always replays through NanoDa); Palomar wants exactly one
+licence file at the root (we currently have LICENSE-zeta-lab and LICENSE-rh-up-to-15-lean there:
+to be reorganised before submission); M4 needs positive legs near every multiple of 1000
+(PLAN §1.2 table).
+Comparator, lean4export (tag v4.35.0-rc2), NanoDa (68d5ca9) and Landrun (811cfff) were built by
+Harald in `.cache/comparator/`.
+
+Also since the previous entry: `ZetaCert/Leg.lean` fixed and building; leg modules
+`ZetaCert/Leg1000/L0..L5` (220 points at T₂ = 512069/512) all build; only the final rewrite in
+`ZetaCert/Leg1000.lean` (`leg`) still fails.
+
+Next step: NanoDa/comparator test on a toy pair with one certificate (M2 addendum), then finish
+the leg, Γ increment, count and assembly of `Zeros0to1000`.
+
 ## 2026-11-06, later: M3 in progress (session stopped at the usage limit)
 
 Done and kernel-checked (`lake build` clean for these modules):

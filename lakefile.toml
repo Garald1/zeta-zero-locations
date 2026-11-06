@@ -50,11 +50,57 @@ name = "ZetaZeros"
 globs = ["ZetaZeros.+"]
 
 [[lean_lib]]
-name = "Challenge1000"
+name = "Zeros0to1000"
 srcDir = "challenge"
-roots = ["Challenge1000"]
+roots = ["Zeros0to1000"]
 
 [[lean_lib]]
-name = "Challenge10000"
+name = "Zeros1000to2000"
 srcDir = "challenge"
-roots = ["Challenge10000"]
+roots = ["Zeros1000to2000"]
+
+[[lean_lib]]
+name = "Zeros2000to3000"
+srcDir = "challenge"
+roots = ["Zeros2000to3000"]
+
+[[lean_lib]]
+name = "Zeros3000to4000"
+srcDir = "challenge"
+roots = ["Zeros3000to4000"]
+
+[[lean_lib]]
+name = "Zeros4000to5000"
+srcDir = "challenge"
+roots = ["Zeros4000to5000"]
+
+[[lean_lib]]
+name = "Zeros5000to6000"
+srcDir = "challenge"
+roots = ["Zeros5000to6000"]
+
+[[lean_lib]]
+name = "Zeros6000to7000"
+srcDir = "challenge"
+roots = ["Zeros6000to7000"]
+
+[[lean_lib]]
+name = "Zeros7000to8000"
+srcDir = "challenge"
+roots = ["Zeros7000to8000"]
+
+[[lean_lib]]
+name = "Zeros8000to9000"
+srcDir = "challenge"
+roots = ["Zeros8000to9000"]
+
+[[lean_lib]]
+name = "Zeros9000to10000"
+srcDir = "challenge"
+roots = ["Zeros9000to10000"]
+
+[[lean_lib]]
+name = "Count10000"
+srcDir = "challenge"
+roots = ["Count10000"]
+
