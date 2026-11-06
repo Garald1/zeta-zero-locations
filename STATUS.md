@@ -1,5 +1,60 @@
 # STATUS (progress log; newest entry first)
 
+## 2026-11-06 (Claude Code, Harald's laptop): M0 done except comparator; M1 and M2 done
+
+**M2 reached.** `ZetaCert/Test/OneZero.lean` proves, kernel-checked, that ζ(1/2 + it) = 0 for some
+real t with |t − 999791571557412940463163147/10²⁴| ≤ 10⁻²⁰ (zero #649).
+`#print axioms z649`: `[propext, Classical.choice, Quot.sound]`. The kernel check (`decide +kernel`
+on the per-zero checker `ZetaCert.zc`) takes about 1.5 s; the whole file about 5 s, most of it
+Mathlib loading.
+
+M0 (setup):
+- Lake package at the repository root: Lean v4.35.0-rc2, Mathlib 065356127b1d; `lake exe cache get`
+  works. Vendored, building unchanged: zeta-lab's `RHHeight`, `RHHeight100` (including
+  `RHHeight100.Main100`, `zero_count_hundred`), `ZetaLean` (4 modules), `HardyFirstZero`,
+  `HardyTenZeros`, and `vendor/zeta23` as a path dependency; rh-up-to-15-lean's `EM2`, `EMDeriv`,
+  `Deriv` with the PNT+ import redirected to zeta23's copy. NOTICE and licences added.
+- `challenge/Challenge1000.lean` and `Challenge10000.lean` elaborate unchanged (only `sorry`
+  warnings); statements unchanged.
+- GitHub: private repository Garald1/zeta-zero-locations created and pushed.
+- **Not done: comparator.** Building Comparator/lean4export/NanoDa/Landrun from their upstream
+  repositories was refused by the Claude Code permission classifier ("code from external"). Go
+  1.24.5 and Rust (cargo 1.99) are installed under ~/.local/go and ~/.cargo. Harald: please allow
+  this (or build the tools yourself), see the commands in
+  vendor-src/zeta-23-lean/zeta23/scripts/verify-comparator.sh, with comparator and lean4export
+  at tag v4.35.0-rc2.
+
+M1 (evaluator, `ZetaCert/Eval/`), all proved sound:
+- `Core.lean`: Nat-only fixed point (scale 2^-128, offset 2^192); e^{-ix} by Taylor (24 terms) at
+  x/2^K and K complex squarings; p^{-s} from w ≈ p^{-1/2} (integer check w²p ≤ 2^256 < (w+1)²p);
+  depth-first enumeration of n ≤ N for S = Σ n^{-s}, D = −Σ log n · n^{-s}; all forcing `match`es
+  have identical branches (`force`), so no failure branch needs to be excluded in proofs.
+- `CoreSound`, `ExpSound`, `DirSound`, `EnumSound`, `SumsSound`: error bounds;
+  `sums_spec` gives |S − Σ_{n≤N} n^{-s}| ≤ N·Dp·(Ep + 4u). The enumeration is checked per N by a
+  bitmap (`enumOK`), not proved from unique factorisation.
+- `EMRest`, `EMRestSound`: the rational part of Euler–Maclaurin (`Rm`, `R1m`, see
+  `ZetaCert/EMDecomp.lean`) in exact Gaussian integers over 2^80, rounded once per term.
+- `ZetaCert/Bernoulli.lean`, `BernTable.lean`: B_0..B_123 by the recurrence, kernel-checked
+  against Mathlib's `bernoulli` (about 20 s, 10 GB, once).
+- `ZetaCert/LogCert.lean`, `PrimeData.lean`, `PrimeDataCheck.lean`: log p for the 550 primes
+  ≤ 4000 to 2^-126 (atanh series in exact naturals), w ≈ p^{-1/2}; checked once (seconds).
+
+M2 (one zero end to end):
+- `ZetaCert/Contraction.lean`: unique zero in a disk by Banach's fixed point theorem.
+- `ZetaCert/OnLine.lean`: the reflection s ↦ 1 − s̄ puts it on the critical line.
+- `ZetaCert/ZeroCert.lean` (`zero_of_EM_bounds`), `EMErrBound.lean`, `Cert.lean` (checker `zc`),
+  `CertSound.lean` (`zc_spec`): from the kernel computation to the zero.
+- Design changes from PLAN.md: the target |ζ(c)| is about 10⁻²¹, not 10⁻²⁶ (the disk radius is
+  r = 2^-67 ≈ 6.8·10⁻²¹ and κ = 1/2), so N ≈ 0.25–0.3 t with k up to 60 suffices; ζ'(c) is taken
+  from the derivative of the EM main term (rh-up-to-15's `emMain1`) plus a Cauchy estimate on the
+  circle of radius 1/4; |ζ''| on the disk from rh-up-to-15's `norm_deriv_deriv_zeta_le` (N = 1).
+- Timing measured (idle machine): Dirichlet sums 0.6 s at t ≈ 1000 (N = 350), 4.2 s at t ≈ 10⁴
+  (N = 3500), about 1 GB per check.
+
+Next: M3 (all 649 certificates, the horizontal leg at T₂ ≈ 1000.13, the argument there, the Γ
+increment over [100, T₂], assembly). The leg needs the evaluator at Re s ≠ 1/2 (p^{-σ} by an
+integer root check).
+
 ## 2026-11-06: sandbox session (claude.ai), before moving to Claude Code on Harald's laptop
 
 Nothing about ζ is formally proved yet. The sandbox had 2 cores and 7 GB of RAM, and its proxy
