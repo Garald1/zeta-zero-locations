@@ -9,7 +9,7 @@ Usage: python3 scripts/gen_window.py <a> <b>
 """
 import sys, re, math
 from fractions import Fraction as Fr
-from mpmath import mp, mpf, log, pi, arctan, quad, digamma, mpc
+from mpmath import mp, mpf, log, pi
 sys.path.insert(0, 'scripts')
 from gen_primedata import entry, L2
 
@@ -72,7 +72,6 @@ c = 1 / Lm - 1 / Um
 
 
 def argb(name):
-    a0, a1, lean = open(f'ZetaCert/Legs/{name}/meta.txt').read().split()[2:5] if False else (None, None, None)
     parts = open(f'ZetaCert/Legs/{name}/meta.txt').read().split()
     return float(parts[2]), float(parts[3])
 

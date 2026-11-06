@@ -119,3 +119,53 @@ roots = ["ToySolution"]
 name = "Zeros0to1000Solution"
 srcDir = "solution"
 roots = ["Zeros0to1000Solution"]
+
+[[lean_lib]]
+name = "Zeros1000to2000Solution"
+srcDir = "solution"
+roots = ["Zeros1000to2000Solution"]
+
+[[lean_lib]]
+name = "Zeros2000to3000Solution"
+srcDir = "solution"
+roots = ["Zeros2000to3000Solution"]
+
+[[lean_lib]]
+name = "Zeros3000to4000Solution"
+srcDir = "solution"
+roots = ["Zeros3000to4000Solution"]
+
+[[lean_lib]]
+name = "Zeros4000to5000Solution"
+srcDir = "solution"
+roots = ["Zeros4000to5000Solution"]
+
+[[lean_lib]]
+name = "Zeros5000to6000Solution"
+srcDir = "solution"
+roots = ["Zeros5000to6000Solution"]
+
+[[lean_lib]]
+name = "Zeros6000to7000Solution"
+srcDir = "solution"
+roots = ["Zeros6000to7000Solution"]
+
+[[lean_lib]]
+name = "Zeros7000to8000Solution"
+srcDir = "solution"
+roots = ["Zeros7000to8000Solution"]
+
+[[lean_lib]]
+name = "Zeros8000to9000Solution"
+srcDir = "solution"
+roots = ["Zeros8000to9000Solution"]
+
+[[lean_lib]]
+name = "Zeros9000to10000Solution"
+srcDir = "solution"
+roots = ["Zeros9000to10000Solution"]
+
+[[lean_lib]]
+name = "Count10000Solution"
+srcDir = "solution"
+roots = ["Count10000Solution"]

@@ -1,5 +1,33 @@
 # STATUS (progress log; newest entry first)
 
+## 2026-11-06, late night: M4 in progress (window machinery done, generation and builds under way)
+
+- `ZetaCert/Window.lean` (builds): `lcI` = leg checker with bounds on Im ζ (`lcI_spec`; `lc` is the
+  special case), `arg_bounds_of_im_nonneg/neg` (|arg z| ≤ |Im z|/Re z via `Complex.tan_arg`,
+  `Real.le_tan`), `log_pi_ok` (log π to 10⁻²⁰), `two_pi_dmu` (generic Γ increment), `ncount_window`
+  (`exact_argument` + `abs_integral_mu_sub_le` + argument bounds at both ends), `wmain`
+  (window assembly, `mem_and_simple_of_Ncount_le`), `range_located/unique/count` (statements of a
+  range file (a, b] inside a window (L, U] with L ≤ a, b ≤ U).
+- Windows (L, U] (`scripts/gen_window.py`, table `LEGS`): legs at exactly 1000, 2000, 3000, 5000,
+  6000, 7000, 9000; at 4000 L = 15999/4 and U = 16003/4; at 8000 L = 31999/4 and U = 64003/8; at
+  10⁴ U = 40001/4. Windows ending at 4000.75, 8000.375, 10000.25 contain one extra zero above b
+  (4000.0173, 8000.0868, #10143), certified and filtered out. Numeric margins of the count
+  (in radians, need > 0): all ≥ 1.5 for the windows generated so far.
+- Generated: legs `ZetaCert/Legs/B*` (`scripts/gen_bleg.py`, 234–884 points each; EM parameters
+  with E0 ≤ 1e-6), window counts `ZetaCert/Windows/W*`, solutions `solution/Zeros{a}to{b}Solution.lean`
+  for 1000–6000, `solution/Count10000Solution.lean` (combines the ten range solutions);
+  certificates `ZetaCert/Zeros{a}to{b}/Z*.lean` for 1000–7000 (`scripts/gen_zero_modules.py a b [U]`,
+  parameter search now a binary search).
+- Built and checked so far: `ZetaCert.Legs.B2000` (380 points, 2 min 54 s wall, 23 CPU-min).
+- **Memory:** a `lake build` of all twelve legs at once was stopped by Claude Code because the laptop
+  ran out of memory (12 parallel kernel checks at N up to 1789); the certificate generation running
+  alongside was stopped too. No errors. Build legs and certificate modules in smaller groups.
+
+Next step: finish `gen_zero_modules.py` for 7000–8000 (U = 64003/8), 8000–9000, 9000–10000
+(U = 40001/4), and `gen_window.py` for 6000–10000; build legs a few at a time; build
+W1000to2000 + Zeros1000to2000Solution first and fix the generated proofs; then the other ranges,
+`#print axioms`, comparator per configuration (record times; Count10000 replays everything).
+
 ## 2026-11-06, night: M3 done: `Zeros0to1000` passes the comparator (NanoDa + Lean kernel)
 
 - `scripts/run-comparator.sh challenge/comparator-Zeros0to1000.json`: "nanoda kernel accepts the
