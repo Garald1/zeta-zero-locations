@@ -1,5 +1,22 @@
 # STATUS (progress log; newest entry first)
 
+## 2026-11-06, night: `Zeros0to1000` proved (comparator run pending)
+
+- `solution/Zeros0to1000Solution.lean` proves `Zeros0to1000.located`, `.unique`, `.count`.
+  `#print axioms` (solution/CheckAxioms0to1000.lean): `[propext, Classical.choice, Quot.sound]` for
+  all three. `lake build` (default targets now include `Zeros0to1000` and its solution) is clean;
+  no `sorry` in ZetaCert/, ZetaZeros/, solution/.
+- Proof: `ZetaCert/Assembly.lean` (`main`): the 649 certificates, separation of the ordinates by
+  more than 3·10⁻²⁰ (kernel-checked `IsChain`), 29 of them below 100, zeta-lab's
+  `rh_height_hundred`/`zero_count_hundred` below 100, and `mem_and_simple_of_Ncount_le` with
+  `Ncount 100 T₂ = 620` above 100.
+- Build times on the laptop: the 13 certificate modules about 2 min wall (12 cores), the 6 leg
+  modules about 2.5 min, the rest seconds.
+- Comparator with NanoDa on `challenge/comparator-Zeros0to1000.json`: running (see next entry).
+
+Next step: comparator result; then M4 (ten range files, boundary legs; the 8000 leg in PLAN §1.2
+has a thin margin 0.08: look for a better T₂; Palomar needs a single root licence file).
+
 ## 2026-11-06, night: NanoDa test passed; leg, Γ increment and count up to T₂ done
 
 - **M2 addendum (NanoDa).** `scripts/run-comparator.sh test/comparator-toy.json` on the toy pair
