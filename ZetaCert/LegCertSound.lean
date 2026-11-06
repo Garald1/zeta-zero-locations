@@ -117,11 +117,12 @@ theorem cast_qE'G : ((qE'G G K j : ℚ) : ℝ) =
 
 end CastsG
 
-theorem lc_spec {j G N K k fuel Dp : ℕ} {v d : ℚ} (h : lc j G N K k fuel Dp v d = true) :
+theorem lcI_spec {j G N K k fuel Dp : ℕ} {v d wlo whi : ℚ} (h : lcI j G N K k fuel Dp v d wlo whi = true) :
     let s : ℂ := (((j : ℝ) / 4096 : ℝ) : ℂ) + (((G : ℝ) / 2 ^ 80 : ℝ) : ℂ) * I
-    (v : ℝ) ≤ (riemannZeta s).re ∧ ‖deriv riemannZeta s‖ ≤ d := by
+    ((v : ℝ) ≤ (riemannZeta s).re ∧ ‖deriv riemannZeta s‖ ≤ d) ∧
+      ((wlo : ℝ) ≤ (riemannZeta s).im ∧ (riemannZeta s).im ≤ whi) := by
   intro s
-  unfold lc at h
+  unfold lcI at h
   simp only at h
   split at h
   rotate_left
@@ -133,7 +134,7 @@ theorem lc_spec {j G N K k fuel Dp : ℕ} {v d : ℚ} (h : lc j G N K k fuel Dp 
   subst hpN
   unfold lcQ at hQ
   simp only [Bool.and_eq_true, decide_eq_true_eq] at hQ
-  obtain ⟨⟨⟨⟨⟨⟨q1, q2⟩, q3⟩, q4⟩, q5⟩, q6⟩, q7⟩ := hQ
+  obtain ⟨⟨⟨⟨⟨⟨⟨⟨q1, q2⟩, q3⟩, q4⟩, q5⟩, q6⟩, q7⟩, q8⟩, q9⟩ := hQ
   -- the data
   have hmemN : (pN, wN, LN') ∈ dataN pN := List.mem_of_getLast? hlast
   have hsub : ∀ d ∈ dataN pN, d ∈ pdata := fun d hd => List.takeWhile_subset _ hd
@@ -285,7 +286,25 @@ theorem lc_spec {j G N K k fuel Dp : ℕ} {v d : ℚ} (h : lc j G N K k fuel Dp 
     unfold qeDG qerrDG qeX; push_cast [cast_qE'G, cast_qEpG, cast_qeR, cast_qδL, hℓ, cast_quu]; rw [← hγ]
   rw [← heF] at hF
   rw [← heD] at hDd
-  constructor
+  have hzim : |(riemannZeta s).im - ((qFv a U R).2 : ℝ)| ≤
+      ((qeFG G pN K k Dp j R : ℚ) : ℝ) + ((qE0G G pN k j wN : ℚ) : ℝ) := by
+    have him : |(riemannZeta s).im - (toC (qFv a U R)).im| ≤ ‖riemannZeta s - toC (qFv a U R)‖ := by
+      rw [← Complex.sub_im]; exact Complex.abs_im_le_norm _
+    have := norm_sub_le_norm_sub_add_norm_sub (riemannZeta s) (emMain pN k s) (toC (qFv a U R))
+    have e : (toC (qFv a U R)).im = ((qFv a U R).2 : ℝ) := rfl
+    rw [e] at him
+    linarith
+  rw [abs_le] at hzim
+  refine ⟨⟨?_, ?_⟩, ?_, ?_⟩
+  rotate_left 2
+  · have h8 := q8
+    rw [← Rat.cast_le (K := ℝ)] at h8
+    push_cast at h8
+    linarith
+  · have h9 := q9
+    rw [← Rat.cast_le (K := ℝ)] at h9
+    push_cast at h9
+    linarith
   · have h6 := q6
     rw [← Rat.cast_le (K := ℝ)] at h6
     push_cast at h6
@@ -304,5 +323,10 @@ theorem lc_spec {j G N K k fuel Dp : ℕ} {v d : ℚ} (h : lc j G N K k fuel Dp 
       simpa using this
     have := norm_toC_le (qFd a U LN R R1)
     linarith
+
+theorem lc_spec {j G N K k fuel Dp : ℕ} {v d : ℚ} (h : lc j G N K k fuel Dp v d = true) :
+    let s : ℂ := (((j : ℝ) / 4096 : ℝ) : ℂ) + (((G : ℝ) / 2 ^ 80 : ℝ) : ℂ) * I
+    (v : ℝ) ≤ (riemannZeta s).re ∧ ‖deriv riemannZeta s‖ ≤ d :=
+  (lcI_spec h).1
 
 end ZetaCert
