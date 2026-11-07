@@ -166,8 +166,10 @@ open Complex ZetaCert.Zeros{T}
         idx += sz
     if post:
         zs = ", ".join(f"z_{i}" for i in range(idx, idx + len(post)))
+        if len(post) == 1:  # `List.Forall P [x]` reduces to `P x`, not to a conjunction
+            zs = f"z_{idx}"
         f.write(f"theorem hP_post : ∀ m ∈ post, ZetaCert.Assembly.P m :=\n"
-                f"  List.forall_iff_forall_mem.mp (by unfold post; exact ⟨{zs}⟩)\n\n")
+                f"  List.forall_iff_forall_mem.mp (by unfold post; exact {zs if len(post) == 1 else '⟨' + zs + '⟩'})\n\n")
     else:
         f.write("theorem hP_post : ∀ m ∈ post, ZetaCert.Assembly.P m := by simp [post]\n\n")
     cases = " | ".join(["hm"] * len(chunk_names))

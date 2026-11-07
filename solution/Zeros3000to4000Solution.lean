@@ -250,7 +250,7 @@ theorem hP_ord3 : ∀ m ∈ ord3, ZetaCert.Assembly.P m :=
   List.forall_iff_forall_mem.mp (by unfold ord3; exact ⟨z_901, z_902, z_903, z_904, z_905, z_906, z_907, z_908, z_909, z_910, z_911, z_912, z_913, z_914, z_915, z_916, z_917, z_918, z_919, z_920, z_921, z_922, z_923, z_924, z_925, z_926, z_927, z_928, z_929, z_930, z_931, z_932, z_933, z_934, z_935, z_936, z_937, z_938, z_939, z_940, z_941, z_942, z_943, z_944, z_945, z_946, z_947, z_948, z_949, z_950, z_951, z_952, z_953, z_954, z_955, z_956, z_957, z_958, z_959, z_960, z_961, z_962, z_963, z_964, z_965, z_966, z_967, z_968, z_969, z_970, z_971, z_972, z_973, z_974, z_975, z_976, z_977, z_978, z_979, z_980, z_981, z_982, z_983, z_984, z_985, z_986, z_987, z_988, z_989, z_990, z_991, z_992, z_993, z_994, z_995, z_996, z_997, z_998, z_999, z_1000, z_1001, z_1002, z_1003, z_1004, z_1005⟩)
 
 theorem hP_post : ∀ m ∈ post, ZetaCert.Assembly.P m :=
-  List.forall_iff_forall_mem.mp (by unfold post; exact ⟨z_1006⟩)
+  List.forall_iff_forall_mem.mp (by unfold post; exact z_1006)
 
 theorem hP : ∀ m ∈ ws, ZetaCert.Assembly.P m := by
   intro m hm

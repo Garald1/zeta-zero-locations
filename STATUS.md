@@ -36,10 +36,19 @@
   solution/CheckAxioms2000to3000.lean). The build was stopped once more for low memory while an
   unrelated NanoDa job ran on the laptop; restarted at P = 3/2.
 
-Next step: the builds of 3000–10000 and `Count10000Solution` (driver: build each range's leg
-chunks and certificates with build_limited.sh, then legs, window, solution); fix any generated
-proof that fails; `#print axioms`; then comparator runs one at a time (not alongside builds: ~7 GB
-each).
+- 2026-11-07, morning: the laptop shut down overnight (battery) during the build. Built by then:
+  all certificate modules up to 6000, 6 of 23 for 6000–7000, 2 of 24 for 9000–10000; legs B1000–
+  B7000 complete (B7000 top module missing), B10000U 2 of 23 chunks; B8000L, B8000U, B9000 not
+  started. **`Zeros3000to4000`, `Zeros4000to5000`, `Zeros5000to6000` solved** (clean build,
+  standard axioms, solution/CheckAxioms*.lean). 3000–4000 had failed: with one zero in `post`,
+  `List.Forall P [x]` reduces to `P x`, so `⟨z_1006⟩` was read as an `∃` witness; fixed in
+  `scripts/gen_window.py` and the three affected solutions regenerated. Build driver now in the
+  repository: `scripts/build_m4.sh` (restartable).
+- Judgment call (2026-11-07): one root `LICENSE` (Apache-2.0 text) for Palomar; the zeta-lab (MIT)
+  and rh-up-to-15-lean licence texts moved to `licenses/`, NOTICE updated.
+
+Next step: `scripts/build_m4.sh` for 6000–10000 and `Count10000Solution`; fix failures;
+`#print axioms`; then comparator runs one at a time (not alongside builds: ~7 GB each).
 
 ## 2026-11-06, night: M3 done: `Zeros0to1000` passes the comparator (NanoDa + Lean kernel)
 
