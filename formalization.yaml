@@ -1,0 +1,70 @@
+# DRAFT for Harald (2026-11-07), written by Claude Code from Palomar's CONTRIBUTING.md and the
+# upstream formalization.yaml v0.4 schema. Items marked TODO need Harald's decision. Literature
+# sources are deliberately not filled in: only references actually opened may be cited.
+# One file for all eleven Comparator configurations (challenge/comparator-*.json).
+version: v0.4
+
+project:
+  name: "Kernel-checked locations of the zeros of the Riemann zeta function up to height 10 000"
+  description: >
+    For every range (1000 j, 1000 (j+1)], j = 0, ..., 9, a Lean proof that every zero of
+    Mathlib's riemannZeta with imaginary part in that range is simple, lies on the critical line,
+    and has its ordinate within 10^-20 of one of the listed values (each of which has exactly one
+    zero near it), together with the exact number of such zeros; and that there are exactly
+    10 142 zeros with 0 < Im s <= 10 000, all simple and on the critical line. The proofs check
+    each zero with a certificate evaluated by the Lean kernel (Euler-Maclaurin, a contraction
+    argument and the functional equation), and count the zeros with the argument principle
+    (zeta-lab's exact_argument) between heights where Re zeta is certified positive on
+    [1/2, 2]. Numerical values computed with Arb are used only as candidate data; every
+    inequality is re-proved in the kernel. Only the axioms propext, Classical.choice and
+    Quot.sound are used.
+  authors:
+    - "Harald Helfgott"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - "Harald Helfgott"
+
+classification:
+  arxiv: [math.NT, cs.LO]
+  msc2020: [11M26, 11Y35, 68V20]
+
+automation:
+  methods:
+    - method: agent
+      note: >
+        The formalization (evaluator, soundness proofs, certificates, assembly) was written by
+        Claude Code (Anthropic) working from a plan and challenge statements written by
+        Harald Helfgott.
+
+review:
+  status: unchecked  # TODO(Harald): change if you review the statements/proofs before submitting
+
+sources:
+  # TODO(Harald): add literature sources (e.g. earlier computations of these zeros) with
+  # relationship "background". The origin rule needs exactly one of: an "original-proof"
+  # source (relationship "other", all other sources "background"/"other"), or a source with
+  # relationship formalizes/adapts/independently-proves.
+  - title: "Kernel-checked zero certificates and window counts (this repository)"
+    type: original-proof
+    relationship: other
+    note: >
+      The proof is a new computation: per-zero certificates evaluated by the Lean kernel and
+      counts by the argument principle; see PLAN.md and README.md.
+
+related_formalizations:
+  - id: teal-sea/zeta-lab
+    relationship: builds-on
+    note: "RH up to height 100 with exact count, exact_argument, Gamma increment (MIT; vendored)."
+  - id: antoine-olivier/rh-up-to-15-lean
+    relationship: builds-on
+    note: "Euler-Maclaurin for zeta with explicit remainder, zeta'' bounds (Apache-2.0; vendored)."
+  - id: anthropics/zeta-23-lean
+    relationship: builds-on
+    note: "Ncount, mu and related definitions, via zeta-lab's copy (Apache-2.0)."
+  - id: teorth/IEANTN
+    relationship: other
+    note: "Strip lemmas restated and cited in the files that use them (Apache-2.0)."
+
+status:
+  sorry_count: 0
+  axioms: [propext, Classical.choice, Quot.sound]
