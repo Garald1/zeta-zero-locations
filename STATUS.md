@@ -32,7 +32,11 @@
   (≤ P concurrent `lake build`s, leg chunks listed individually since a leg's top module would build
   all its chunks at once): P = 3 below 6000, P = 2 above.
 
-Next step: the builds of 2000–10000 and `Count10000Solution` (driver: build each range's leg
+- 2026-11-07: **`Zeros2000to3000` solved** (clean build, standard axioms,
+  solution/CheckAxioms2000to3000.lean). The build was stopped once more for low memory while an
+  unrelated NanoDa job ran on the laptop; restarted at P = 3/2.
+
+Next step: the builds of 3000–10000 and `Count10000Solution` (driver: build each range's leg
 chunks and certificates with build_limited.sh, then legs, window, solution); fix any generated
 proof that fails; `#print axioms`; then comparator runs one at a time (not alongside builds: ~7 GB
 each).
