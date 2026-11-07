@@ -1,5 +1,37 @@
 # STATUS (progress log; newest entry first)
 
+## 2026-11-07, midday: module-system port (Palomar requirement); full rebuild running
+
+- Palomar's CONTRIBUTING.md (§2.1 "Lean source requirements", read 2026-11-07, with
+  docs/specification.md "Mechanical verification"): "Every regular `.lean` source file in the
+  submitted repository must use Lean's module system and contain at most 10,000 physical lines",
+  including Challenge, Solution, unused source files and generated certificates; checked with
+  Lean's parser before any build. 468 of our files lacked a `module` header (the vendored zeta-lab
+  and zeta23 code already had it).
+- Port (branch `module-port`, `scripts/port_module.py`): `module` after the leading comments,
+  `public import`, `@[expose] public section` after the imports (zeta-lab's pattern; keeps the
+  checker bodies visible to `decide +kernel` in other modules). All generators now emit ported
+  files; regeneration reproduces them exactly. **The challenge files change only by this header**
+  (`module`, `public import Mathlib`, `@[expose] public section`); statements and definitions
+  are untouched. Harald to confirm that this counts as a syntax-only change.
+- After the port: `lake build ToySolution` (whole evaluator chain rebuilt) and
+  `scripts/run-comparator.sh test/comparator-toy.json`: NanoDa and Lean kernel accept,
+  9 min 48 s wall, 6.7 GB peak.
+- The unported build of 6000–10000 was stopped (it would have had to be redone). Full rebuild
+  under the module system: `scripts/build_m4.sh` (now builds shared dependencies first, and
+  range 0–1000).
+- Other Palomar facts from the same reading: toolchains.json minimum is `v4.35.0-rc2` (ours);
+  `formalization.yaml` v0.4 needs project.name/description/authors (humans only)/license
+  (`Apache-2.0`, matching the root LICENSE)/responsible_maintainers, classification.arxiv
+  (msc2020 optional), automation.methods (e.g. `method: agent`), review.status, and sources
+  (relationship formalizes/adapts/independently-proves/background/other, with an origin rule).
+  No numeric time or memory limits are published (verification runs in GitHub Actions under
+  Landrun).
+
+Next step: wait for the rebuild; fix failures; `#print axioms` for all solutions; merge
+`module-port` into main; comparators one at a time (9000–10000 first, then Count10000);
+formalization.yaml draft for Harald.
+
 ## 2026-11-06, late night: M4 in progress (window machinery done, generation and builds under way)
 
 - `ZetaCert/Window.lean` (builds): `lcI` = leg checker with bounds on Im ζ (`lcI_spec`; `lc` is the
