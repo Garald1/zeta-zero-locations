@@ -2,10 +2,14 @@
 Copyright (c) 2026 Harald Helfgott. All rights reserved.
 Released under Apache 2.0 license.
 -/
-import ZetaCert.Contraction
-import ZetaCert.OnLine
-import ZetaZeros.EMDeriv
-import ZetaZeros.Deriv
+module
+
+public import ZetaCert.Contraction
+public import ZetaCert.OnLine
+public import ZetaZeros.EMDeriv
+public import ZetaZeros.Deriv
+
+@[expose] public section
 
 /-!
 # One zero on the critical line from bounds on the Euler–Maclaurin main term

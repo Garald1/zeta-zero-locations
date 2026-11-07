@@ -2,21 +2,25 @@
 Copyright (c) 2026 Harald Helfgott. All rights reserved.
 Released under Apache 2.0 license.
 -/
-import ZetaCert.Assembly
-import ZetaCert.Count1000
-import ZetaCert.Zeros1000.Z0
-import ZetaCert.Zeros1000.Z1
-import ZetaCert.Zeros1000.Z2
-import ZetaCert.Zeros1000.Z3
-import ZetaCert.Zeros1000.Z4
-import ZetaCert.Zeros1000.Z5
-import ZetaCert.Zeros1000.Z6
-import ZetaCert.Zeros1000.Z7
-import ZetaCert.Zeros1000.Z8
-import ZetaCert.Zeros1000.Z9
-import ZetaCert.Zeros1000.Z10
-import ZetaCert.Zeros1000.Z11
-import ZetaCert.Zeros1000.Z12
+module
+
+public import ZetaCert.Assembly
+public import ZetaCert.Count1000
+public import ZetaCert.Zeros1000.Z0
+public import ZetaCert.Zeros1000.Z1
+public import ZetaCert.Zeros1000.Z2
+public import ZetaCert.Zeros1000.Z3
+public import ZetaCert.Zeros1000.Z4
+public import ZetaCert.Zeros1000.Z5
+public import ZetaCert.Zeros1000.Z6
+public import ZetaCert.Zeros1000.Z7
+public import ZetaCert.Zeros1000.Z8
+public import ZetaCert.Zeros1000.Z9
+public import ZetaCert.Zeros1000.Z10
+public import ZetaCert.Zeros1000.Z11
+public import ZetaCert.Zeros1000.Z12
+
+@[expose] public section
 
 /-!
 # Solution of `challenge/Zeros0to1000.lean`

@@ -4,7 +4,11 @@ dec8fa913b6c972c2d16f4d23f54d2174cef7718, file ZetaZeros/Deriv.lean (Apache Lice
 see LICENSE-rh-up-to-15-lean). Local modifications: the PNT+ import is redirected to the copy
 vendored in zeta23 (Zeta23.FromPNTPlus.ZetaBounds); any further changes are marked "(port)".
 -/
-import Zeta23.FromPNTPlus.ZetaBounds
+module
+
+public import Zeta23.FromPNTPlus.ZetaBounds
+
+@[expose] public section
 
 /-!
 # Explicit bounds for `ζ`, `ζ'`, `ζ''` and zero-free boxes (card L0-Deriv)

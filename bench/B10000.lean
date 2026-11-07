@@ -1,4 +1,8 @@
-import ZetaCert.Eval.Core
+module
+
+public import ZetaCert.Eval.Core
+
+@[expose] public section
 open ZetaCert.Eval
 
 def pd0 : List (Nat × Nat × Nat) := [

@@ -22,3 +22,8 @@ with open(out, "w") as f:
         f.write(f"def rc{ci} : List (Nat × Nat) := [\n" + ",\n".join(f"  ({p}, {x})" for p, x in ch) + "]\n\n")
     f.write("def rcAll : List (Nat × Nat) := " + " ++ ".join(f"rc{i}" for i in range(len(chunks))) + "\n\nend ZetaCert.Data\n")
 print(len(ents))
+
+# Palomar requires the module system for every .lean file: see scripts/port_module.py.
+import glob as _glob
+from port_module import port_files as _port_files
+_port_files([out])

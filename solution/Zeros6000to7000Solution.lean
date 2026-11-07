@@ -2,31 +2,35 @@
 Copyright (c) 2026 Harald Helfgott. All rights reserved.
 Released under Apache 2.0 license.
 -/
-import ZetaCert.Window
-import ZetaCert.Windows.W6000to7000
-import ZetaCert.Zeros6000to7000.Z0
-import ZetaCert.Zeros6000to7000.Z1
-import ZetaCert.Zeros6000to7000.Z2
-import ZetaCert.Zeros6000to7000.Z3
-import ZetaCert.Zeros6000to7000.Z4
-import ZetaCert.Zeros6000to7000.Z5
-import ZetaCert.Zeros6000to7000.Z6
-import ZetaCert.Zeros6000to7000.Z7
-import ZetaCert.Zeros6000to7000.Z8
-import ZetaCert.Zeros6000to7000.Z9
-import ZetaCert.Zeros6000to7000.Z10
-import ZetaCert.Zeros6000to7000.Z11
-import ZetaCert.Zeros6000to7000.Z12
-import ZetaCert.Zeros6000to7000.Z13
-import ZetaCert.Zeros6000to7000.Z14
-import ZetaCert.Zeros6000to7000.Z15
-import ZetaCert.Zeros6000to7000.Z16
-import ZetaCert.Zeros6000to7000.Z17
-import ZetaCert.Zeros6000to7000.Z18
-import ZetaCert.Zeros6000to7000.Z19
-import ZetaCert.Zeros6000to7000.Z20
-import ZetaCert.Zeros6000to7000.Z21
-import ZetaCert.Zeros6000to7000.Z22
+module
+
+public import ZetaCert.Window
+public import ZetaCert.Windows.W6000to7000
+public import ZetaCert.Zeros6000to7000.Z0
+public import ZetaCert.Zeros6000to7000.Z1
+public import ZetaCert.Zeros6000to7000.Z2
+public import ZetaCert.Zeros6000to7000.Z3
+public import ZetaCert.Zeros6000to7000.Z4
+public import ZetaCert.Zeros6000to7000.Z5
+public import ZetaCert.Zeros6000to7000.Z6
+public import ZetaCert.Zeros6000to7000.Z7
+public import ZetaCert.Zeros6000to7000.Z8
+public import ZetaCert.Zeros6000to7000.Z9
+public import ZetaCert.Zeros6000to7000.Z10
+public import ZetaCert.Zeros6000to7000.Z11
+public import ZetaCert.Zeros6000to7000.Z12
+public import ZetaCert.Zeros6000to7000.Z13
+public import ZetaCert.Zeros6000to7000.Z14
+public import ZetaCert.Zeros6000to7000.Z15
+public import ZetaCert.Zeros6000to7000.Z16
+public import ZetaCert.Zeros6000to7000.Z17
+public import ZetaCert.Zeros6000to7000.Z18
+public import ZetaCert.Zeros6000to7000.Z19
+public import ZetaCert.Zeros6000to7000.Z20
+public import ZetaCert.Zeros6000to7000.Z21
+public import ZetaCert.Zeros6000to7000.Z22
+
+@[expose] public section
 
 /-!
 # Solution of `challenge/Zeros6000to7000.lean`

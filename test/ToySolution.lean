@@ -2,7 +2,11 @@
 Copyright (c) 2026 Harald Helfgott. All rights reserved.
 Released under Apache 2.0 license.
 -/
-import ZetaCert.CertSound
+module
+
+public import ZetaCert.CertSound
+
+@[expose] public section
 
 /-! Toy solution for the NanoDa/comparator test of milestone M2. -/
 

@@ -1,4 +1,8 @@
-import ZetaEval2
+module
+
+public import ZetaEval2
+
+@[expose] public section
 open ZB2
 
 def twoPi : Nat := 497805226624462170461043889244

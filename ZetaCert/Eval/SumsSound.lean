@@ -2,8 +2,12 @@
 Copyright (c) 2026 Harald Helfgott. All rights reserved.
 Released under Apache 2.0 license.
 -/
-import ZetaCert.Eval.DirSound
-import ZetaCert.Eval.EnumSound
+module
+
+public import ZetaCert.Eval.DirSound
+public import ZetaCert.Eval.EnumSound
+
+@[expose] public section
 
 /-!
 # The Dirichlet sums at `s = 1/2 + it`: `sums_spec`

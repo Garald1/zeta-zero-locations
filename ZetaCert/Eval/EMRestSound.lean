@@ -2,9 +2,13 @@
 Copyright (c) 2026 Harald Helfgott. All rights reserved.
 Released under Apache 2.0 license.
 -/
-import ZetaCert.EMDecomp
-import ZetaCert.Eval.EMRest
-import ZetaCert.Eval.CoreSound
+module
+
+public import ZetaCert.EMDecomp
+public import ZetaCert.Eval.EMRest
+public import ZetaCert.Eval.CoreSound
+
+@[expose] public section
 
 /-!
 # Soundness of `remR` and `remR1`

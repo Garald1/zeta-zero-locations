@@ -2,11 +2,15 @@
 Copyright (c) 2026 Harald Helfgott. All rights reserved.
 Released under Apache 2.0 license.
 -/
-import ZetaCert.Assembly
-import ZetaCert.LegCertSound
-import ZetaCert.PrimeDataCheck
-import RHHeight.ExactArgument
-import RHHeight.GammaIncrement
+module
+
+public import ZetaCert.Assembly
+public import ZetaCert.LegCertSound
+public import ZetaCert.PrimeDataCheck
+public import RHHeight.ExactArgument
+public import RHHeight.GammaIncrement
+
+@[expose] public section
 
 /-!
 # Counting windows `(L, U]` and the range statements

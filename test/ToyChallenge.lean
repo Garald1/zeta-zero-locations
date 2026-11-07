@@ -2,7 +2,11 @@
 Copyright (c) 2026 Harald Helfgott. All rights reserved.
 Released under Apache 2.0 license.
 -/
-import Mathlib
+module
+
+public import Mathlib
+
+@[expose] public section
 
 /-! Toy challenge for the NanoDa/comparator test of milestone M2: two single-zero statements. -/
 

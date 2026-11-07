@@ -1,3 +1,7 @@
+module
+
+@[expose] public section
+
 /-!
 # Kernel-evaluation prototype, version 2 (Lean core only)
 

@@ -41,3 +41,7 @@ if __name__ == "__main__":
         f.write("/-- All chunks. -/\ndef pcAll : List (Nat × Nat × Nat × Nat × Nat) := " + " ++ ".join(f"pc{i}" for i in range(len(chunks))) + "\n\n")
         f.write(f"/-- Number of chunks. -/\ndef nChunks : Nat := {len(chunks)}\n\nend ZetaCert.Data\n")
     print(len(ps), "primes,", len(chunks), "chunks; max J", max(e[4] for e in ents))
+    # Palomar requires the module system for every .lean file: see scripts/port_module.py.
+    sys.path.insert(0, 'scripts')
+    from port_module import port_files
+    port_files([out])

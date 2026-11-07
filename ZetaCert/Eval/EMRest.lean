@@ -3,6 +3,10 @@ Copyright (c) 2026 Harald Helfgott. All rights reserved.
 Released under Apache 2.0 license.
 -/
 
+module
+
+@[expose] public section
+
 /-!
 # Kernel evaluation of the rational part of Euler–Maclaurin (Lean core only)
 

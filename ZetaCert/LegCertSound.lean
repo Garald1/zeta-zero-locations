@@ -2,9 +2,13 @@
 Copyright (c) 2026 Harald Helfgott. All rights reserved.
 Released under Apache 2.0 license.
 -/
-import ZetaCert.LegCert
-import ZetaCert.CertSound
-import ZetaCert.Eval.EMRestSSound
+module
+
+public import ZetaCert.LegCert
+public import ZetaCert.CertSound
+public import ZetaCert.Eval.EMRestSSound
+
+@[expose] public section
 
 /-!
 # Soundness of the leg-point checker: `lc_spec`

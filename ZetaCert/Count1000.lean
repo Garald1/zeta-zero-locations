@@ -2,10 +2,14 @@
 Copyright (c) 2026 Harald Helfgott. All rights reserved.
 Released under Apache 2.0 license.
 -/
-import ZetaCert.Leg1000
-import RHHeight.ExactArgument
-import RHHeight.GammaIncrement
-import RHHeight100.HorizontalLegs100
+module
+
+public import ZetaCert.Leg1000
+public import RHHeight.ExactArgument
+public import RHHeight.GammaIncrement
+public import RHHeight100.HorizontalLegs100
+
+@[expose] public section
 
 /-!
 # The number of zeros with `100 < Im ρ ≤ T₂`, `T₂ = 512069/512`: `Ncount 100 T₂ = 620`

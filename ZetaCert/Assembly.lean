@@ -2,8 +2,12 @@
 Copyright (c) 2026 Harald Helfgott. All rights reserved.
 Released under Apache 2.0 license.
 -/
-import ZetaCert.OnLine
-import RHHeight100.Main100
+module
+
+public import ZetaCert.OnLine
+public import RHHeight100.Main100
+
+@[expose] public section
 
 /-!
 # Assembly up to height 1000

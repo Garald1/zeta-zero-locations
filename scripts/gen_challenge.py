@@ -151,3 +151,9 @@ def main():
     print(f"Count10000: {check_size(path)}")
 
 main()
+
+# Palomar requires the module system for every .lean file: see scripts/port_module.py.
+import glob as _glob, sys as _sys
+_sys.path.insert(0, 'scripts')
+from port_module import port_files as _port_files
+_port_files(_glob.glob("challenge/*.lean"))

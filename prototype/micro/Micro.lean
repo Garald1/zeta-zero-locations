@@ -1,3 +1,7 @@
+module
+
+@[expose] public section
+
 /-! Micro-benchmarks for kernel arithmetic cost -/
 
 def loopNat : Nat → Nat → Nat

@@ -236,3 +236,8 @@ theorem count : (zerosBetween {A} {B}).ncard = {len(ords)} := by
 end Zeros{T}
 """)
 print("wrote", f'ZetaCert/Windows/W{T}.lean', f'solution/Zeros{T}Solution.lean', nmods, "certificate modules expected")
+
+# Palomar requires the module system for every .lean file: see scripts/port_module.py.
+import glob as _glob
+from port_module import port_files as _port_files
+_port_files([f"ZetaCert/Windows/W{T}.lean", f"solution/Zeros{T}Solution.lean"])

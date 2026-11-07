@@ -11,7 +11,11 @@ gamma_k = Im rho_k for the 649 zeros with 0 < Im rho <= 1000 (zeros number 1 to 
 computed by Arb (acb_dirichlet_zeta_zeros, 160-bit ball arithmetic, radius <= 1.2e-44 on each
 gamma_k). The list is part of the statement; the proof must not assume it is correct.
 -/
-import Mathlib
+module
+
+public import Mathlib
+
+@[expose] public section
 
 namespace Zeros0to1000
 

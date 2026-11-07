@@ -1,3 +1,7 @@
+module
+
+@[expose] public section
+
 /-! Micro-benchmarks: cost of a fixed-point complex multiply + accumulate in the kernel,
 for several coding styles.  10^4 iterations each. -/
 

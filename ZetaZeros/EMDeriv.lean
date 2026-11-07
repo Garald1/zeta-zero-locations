@@ -4,7 +4,11 @@ dec8fa913b6c972c2d16f4d23f54d2174cef7718, file ZetaZeros/EMDeriv.lean (Apache Li
 see LICENSE-rh-up-to-15-lean). Local modifications: the PNT+ import is redirected to the copy
 vendored in zeta23 (Zeta23.FromPNTPlus.ZetaBounds); any further changes are marked "(port)".
 -/
-import ZetaZeros.EM2
+module
+
+public import ZetaZeros.EM2
+
+@[expose] public section
 
 /-!
 # First and second derivatives of the Euler–Maclaurin main term `emMain N k`

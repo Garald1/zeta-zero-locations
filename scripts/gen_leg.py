@@ -94,3 +94,8 @@ with open(f'ZetaCert/{name}.lean', 'w') as f:
             f"  have h := leg_all σ ⟨by norm_num at hσ ⊢; linarith [hσ.1], by norm_num at hσ ⊢; linarith [hσ.2]⟩\n"
             f"  have e : ((({G} : ℕ) : ℝ) / 2 ^ 80 : ℝ) = ({num} : ℝ) / {den} := by norm_num\n"
             f"  simp only at h; rw [e] at h; exact h\n\nend ZetaCert.{name}\n")
+
+# Palomar requires the module system for every .lean file: see scripts/port_module.py.
+import glob as _glob
+from port_module import port_files as _port_files
+_port_files(_glob.glob(f"{outdir}/L*.lean") + [f"ZetaCert/{name}.lean"])

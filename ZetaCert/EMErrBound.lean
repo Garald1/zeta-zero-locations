@@ -2,7 +2,11 @@
 Copyright (c) 2026 Harald Helfgott. All rights reserved.
 Released under Apache 2.0 license.
 -/
-import ZetaZeros.EM2
+module
+
+public import ZetaZeros.EM2
+
+@[expose] public section
 
 /-!
 # Explicit bounds for the Euler–Maclaurin remainder at `1/2 + iγ` and on the circle of radius `1/4`

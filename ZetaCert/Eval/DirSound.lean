@@ -2,7 +2,11 @@
 Copyright (c) 2026 Harald Helfgott. All rights reserved.
 Released under Apache 2.0 license.
 -/
-import ZetaCert.Eval.ExpSound
+module
+
+public import ZetaCert.Eval.ExpSound
+
+@[expose] public section
 
 /-!
 # Soundness of the Dirichlet sums `S = Σ n^{-s}` and `D = -Σ log n · n^{-s}`

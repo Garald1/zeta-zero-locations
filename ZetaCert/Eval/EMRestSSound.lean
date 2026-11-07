@@ -2,7 +2,11 @@
 Copyright (c) 2026 Harald Helfgott. All rights reserved.
 Released under Apache 2.0 license.
 -/
-import ZetaCert.Eval.EMRestSound
+module
+
+public import ZetaCert.Eval.EMRestSound
+
+@[expose] public section
 
 /-!
 # Soundness of `remRS`, `remR1S` (general real part `σ = S/2^80`)

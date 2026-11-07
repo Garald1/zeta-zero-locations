@@ -2,9 +2,13 @@
 Copyright (c) 2026 Harald Helfgott. All rights reserved.
 Released under Apache 2.0 license.
 -/
-import ZetaCert.LogCert
-import ZetaCert.PrimeData
-import ZetaCert.Eval.SumsSound
+module
+
+public import ZetaCert.LogCert
+public import ZetaCert.PrimeData
+public import ZetaCert.Eval.SumsSound
+
+@[expose] public section
 
 /-!
 # The prime data, checked once: `w ≈ p^{-1/2}` and `|L - log p| ≤ 2^-126` for all `p ≤ 4000`

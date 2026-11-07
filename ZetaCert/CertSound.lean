@@ -2,9 +2,13 @@
 Copyright (c) 2026 Harald Helfgott. All rights reserved.
 Released under Apache 2.0 license.
 -/
-import ZetaCert.Cert
-import ZetaCert.ZeroCert
-import ZetaCert.EMErrBound
+module
+
+public import ZetaCert.Cert
+public import ZetaCert.ZeroCert
+public import ZetaCert.EMErrBound
+
+@[expose] public section
 
 /-!
 # Soundness of the per-zero checker: `zc_spec`

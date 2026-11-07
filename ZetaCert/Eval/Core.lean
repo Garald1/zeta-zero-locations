@@ -3,6 +3,10 @@ Copyright (c) 2026 Harald Helfgott. All rights reserved.
 Released under Apache 2.0 license.
 -/
 
+module
+
+@[expose] public section
+
 /-!
 # Kernel evaluator: fixed-point core (Lean core only, no Mathlib)
 

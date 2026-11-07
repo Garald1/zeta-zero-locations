@@ -180,3 +180,8 @@ with open(f'ZetaCert/Legs/{name}.lean', 'w') as f:
 with open(f'{outdir}/meta.txt', 'w') as f:
     f.write(f"{num} {den} {arg[0]!r} {arg[1]!r} {lo}|{hi}\n")
 print("arg bounds", arg, "true", math.atan2(float(z0.imag), float(z0.real)))
+
+# Palomar requires the module system for every .lean file: see scripts/port_module.py.
+import glob as _glob
+from port_module import port_files as _port_files
+_port_files(_glob.glob(f"{outdir}/L*.lean") + [f"ZetaCert/Legs/{name}.lean"])

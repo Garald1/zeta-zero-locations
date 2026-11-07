@@ -1,3 +1,7 @@
+module
+
+@[expose] public section
+
 /-! Micro-benchmarks: strict vs lazy loops in the kernel -/
 
 -- lazy accumulator (structural recursion)

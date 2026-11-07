@@ -7,7 +7,11 @@ Trusted statement (for leanprover/comparator and Palomar): every zero of Mathlib
 `riemannZeta` with 0 < Im s <= 10000 is simple and lies on the critical line, and there are
 exactly 10142 of them. The ten files Zeros{a}to{b}.lean locate each of them to within 10^-20.
 -/
-import Mathlib
+module
+
+public import Mathlib
+
+@[expose] public section
 
 namespace Count10000
 

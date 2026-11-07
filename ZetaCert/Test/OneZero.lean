@@ -2,7 +2,11 @@
 Copyright (c) 2026 Harald Helfgott. All rights reserved.
 Released under Apache 2.0 license.
 -/
-import ZetaCert.CertSound
+module
+
+public import ZetaCert.CertSound
+
+@[expose] public section
 
 /-! Milestone M2: the zero of ζ near `999.7915715574` (number 649), end to end. -/
 

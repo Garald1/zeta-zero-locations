@@ -2,9 +2,13 @@
 Copyright (c) 2026 Harald Helfgott. All rights reserved.
 Released under Apache 2.0 license.
 -/
-import ZetaCert.RootData
-import ZetaCert.PrimeDataCheck
-import ZetaCert.Eval.SigmaSound
+module
+
+public import ZetaCert.RootData
+public import ZetaCert.PrimeDataCheck
+public import ZetaCert.Eval.SigmaSound
+
+@[expose] public section
 
 /-! # The root data, checked once: `x ≈ p^{-1/4096}`, and its alignment with `pdata` -/
 

@@ -2,8 +2,12 @@
 Copyright (c) 2026 Harald Helfgott. All rights reserved.
 Released under Apache 2.0 license.
 -/
-import ZetaCert.PrimeDataCheck
-import ZetaCert.BernTable
+module
+
+public import ZetaCert.PrimeDataCheck
+public import ZetaCert.BernTable
+
+@[expose] public section
 
 /-!
 # The per-zero checker `zc`

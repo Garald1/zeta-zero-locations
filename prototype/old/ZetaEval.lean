@@ -1,3 +1,7 @@
+module
+
+@[expose] public section
+
 /-!
 # Kernel-evaluation prototype (Lean core only, no Mathlib)
 

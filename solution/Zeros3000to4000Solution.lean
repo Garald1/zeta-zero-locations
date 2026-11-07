@@ -2,29 +2,33 @@
 Copyright (c) 2026 Harald Helfgott. All rights reserved.
 Released under Apache 2.0 license.
 -/
-import ZetaCert.Window
-import ZetaCert.Windows.W3000to4000
-import ZetaCert.Zeros3000to4000.Z0
-import ZetaCert.Zeros3000to4000.Z1
-import ZetaCert.Zeros3000to4000.Z2
-import ZetaCert.Zeros3000to4000.Z3
-import ZetaCert.Zeros3000to4000.Z4
-import ZetaCert.Zeros3000to4000.Z5
-import ZetaCert.Zeros3000to4000.Z6
-import ZetaCert.Zeros3000to4000.Z7
-import ZetaCert.Zeros3000to4000.Z8
-import ZetaCert.Zeros3000to4000.Z9
-import ZetaCert.Zeros3000to4000.Z10
-import ZetaCert.Zeros3000to4000.Z11
-import ZetaCert.Zeros3000to4000.Z12
-import ZetaCert.Zeros3000to4000.Z13
-import ZetaCert.Zeros3000to4000.Z14
-import ZetaCert.Zeros3000to4000.Z15
-import ZetaCert.Zeros3000to4000.Z16
-import ZetaCert.Zeros3000to4000.Z17
-import ZetaCert.Zeros3000to4000.Z18
-import ZetaCert.Zeros3000to4000.Z19
-import ZetaCert.Zeros3000to4000.Z20
+module
+
+public import ZetaCert.Window
+public import ZetaCert.Windows.W3000to4000
+public import ZetaCert.Zeros3000to4000.Z0
+public import ZetaCert.Zeros3000to4000.Z1
+public import ZetaCert.Zeros3000to4000.Z2
+public import ZetaCert.Zeros3000to4000.Z3
+public import ZetaCert.Zeros3000to4000.Z4
+public import ZetaCert.Zeros3000to4000.Z5
+public import ZetaCert.Zeros3000to4000.Z6
+public import ZetaCert.Zeros3000to4000.Z7
+public import ZetaCert.Zeros3000to4000.Z8
+public import ZetaCert.Zeros3000to4000.Z9
+public import ZetaCert.Zeros3000to4000.Z10
+public import ZetaCert.Zeros3000to4000.Z11
+public import ZetaCert.Zeros3000to4000.Z12
+public import ZetaCert.Zeros3000to4000.Z13
+public import ZetaCert.Zeros3000to4000.Z14
+public import ZetaCert.Zeros3000to4000.Z15
+public import ZetaCert.Zeros3000to4000.Z16
+public import ZetaCert.Zeros3000to4000.Z17
+public import ZetaCert.Zeros3000to4000.Z18
+public import ZetaCert.Zeros3000to4000.Z19
+public import ZetaCert.Zeros3000to4000.Z20
+
+@[expose] public section
 
 /-!
 # Solution of `challenge/Zeros3000to4000.lean`

@@ -2,16 +2,20 @@
 Copyright (c) 2026 Harald Helfgott. All rights reserved.
 Released under Apache 2.0 license.
 -/
-import Zeros0to1000Solution
-import Zeros1000to2000Solution
-import Zeros2000to3000Solution
-import Zeros3000to4000Solution
-import Zeros4000to5000Solution
-import Zeros5000to6000Solution
-import Zeros6000to7000Solution
-import Zeros7000to8000Solution
-import Zeros8000to9000Solution
-import Zeros9000to10000Solution
+module
+
+public import Zeros0to1000Solution
+public import Zeros1000to2000Solution
+public import Zeros2000to3000Solution
+public import Zeros3000to4000Solution
+public import Zeros4000to5000Solution
+public import Zeros5000to6000Solution
+public import Zeros6000to7000Solution
+public import Zeros7000to8000Solution
+public import Zeros8000to9000Solution
+public import Zeros9000to10000Solution
+
+@[expose] public section
 
 /-!
 # Solution of `challenge/Count10000.lean`

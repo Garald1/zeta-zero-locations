@@ -56,3 +56,8 @@ for j in range(nmods):
                     f"(fuel := {p['fuel']}) (Dp := {p['Dp']}) (by decide +kernel)\n\n")
         f.write(f"end ZetaCert.Zeros{T}\n")
 print(nmods, "modules,", len(entries), "zeros")
+
+# Palomar requires the module system for every .lean file: see scripts/port_module.py.
+import glob as _glob
+from port_module import port_files as _port_files
+_port_files(_glob.glob(f"{outdir}/Z*.lean"))

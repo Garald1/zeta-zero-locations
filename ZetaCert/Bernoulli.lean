@@ -2,7 +2,11 @@
 Copyright (c) 2026 Harald Helfgott. All rights reserved.
 Released under Apache 2.0 license.
 -/
-import Mathlib
+module
+
+public import Mathlib
+
+@[expose] public section
 
 /-!
 # Bernoulli numbers by the recurrence, kernel-computable

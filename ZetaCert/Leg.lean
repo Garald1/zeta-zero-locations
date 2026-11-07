@@ -2,7 +2,11 @@
 Copyright (c) 2026 Harald Helfgott. All rights reserved.
 Released under Apache 2.0 license.
 -/
-import ZetaCert.LegCertSound
+module
+
+public import ZetaCert.LegCertSound
+
+@[expose] public section
 
 /-!
 # Positivity of `Re ζ` on a horizontal segment, from finitely many leg points

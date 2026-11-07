@@ -2,8 +2,12 @@
 Copyright (c) 2026 Harald Helfgott. All rights reserved.
 Released under Apache 2.0 license.
 -/
-import Mathlib
-import ZetaCert.Eval.Core
+module
+
+public import Mathlib
+public import ZetaCert.Eval.Core
+
+@[expose] public section
 
 /-!
 # Soundness of the fixed-point primitives of `ZetaCert.Eval.Core`

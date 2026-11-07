@@ -2,12 +2,16 @@
 Copyright (c) 2026 Harald Helfgott. All rights reserved.
 Released under Apache 2.0 license.
 -/
-import ZetaCert.Leg1000.L0
-import ZetaCert.Leg1000.L1
-import ZetaCert.Leg1000.L2
-import ZetaCert.Leg1000.L3
-import ZetaCert.Leg1000.L4
-import ZetaCert.Leg1000.L5
+module
+
+public import ZetaCert.Leg1000.L0
+public import ZetaCert.Leg1000.L1
+public import ZetaCert.Leg1000.L2
+public import ZetaCert.Leg1000.L3
+public import ZetaCert.Leg1000.L4
+public import ZetaCert.Leg1000.L5
+
+@[expose] public section
 
 /-! `Re ζ(σ + iT₂) > 0` on `[1/2, 2]`, `T₂ = 512069/512`. -/
 

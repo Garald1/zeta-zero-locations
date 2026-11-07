@@ -4,8 +4,12 @@ dec8fa913b6c972c2d16f4d23f54d2174cef7718, file ZetaZeros/EM2.lean (Apache Licens
 see LICENSE-rh-up-to-15-lean). Local modifications: the PNT+ import is redirected to the copy
 vendored in zeta23 (Zeta23.FromPNTPlus.ZetaBounds); any further changes are marked "(port)".
 -/
-import Zeta23.FromPNTPlus.ZetaBounds
-import Mathlib.NumberTheory.ZetaValues
+module
+
+public import Zeta23.FromPNTPlus.ZetaBounds
+public import Mathlib.NumberTheory.ZetaValues
+
+@[expose] public section
 
 /-!
 # Euler–Maclaurin of order `2k` for `riemannZeta` (L0-EM-A1, campaign rh-up-to-1)

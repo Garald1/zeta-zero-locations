@@ -2,7 +2,11 @@
 Copyright (c) 2026 Harald Helfgott. All rights reserved.
 Released under Apache 2.0 license.
 -/
-import ZetaZeros.EMDeriv
+module
+
+public import ZetaZeros.EMDeriv
+
+@[expose] public section
 
 /-!
 # The Euler–Maclaurin main term as Dirichlet sum plus `N^{-s}` times a rational function
