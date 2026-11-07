@@ -47,7 +47,11 @@
 - Judgment call (2026-11-07): one root `LICENSE` (Apache-2.0 text) for Palomar; the zeta-lab (MIT)
   and rh-up-to-15-lean licence texts moved to `licenses/`, NOTICE updated.
 
-Next step: `scripts/build_m4.sh` for 6000–10000 and `Count10000Solution`; fix failures;
+- 2026-11-07, 11:05: **`Zeros6000to7000` solved** (clean build, standard axioms). Range timings
+  with build_m4.sh: 6000–7000 about 1 h (P = 2, partly built before); 7000–8000 running since 08:52
+  (17 leg chunks and 19 of 23 certificate modules done by 11:05).
+
+Next step: `scripts/build_m4.sh` for 7000–10000 and `Count10000Solution`; fix failures;
 `#print axioms`; then comparator runs one at a time (not alongside builds: ~7 GB each).
 
 ## 2026-11-06, night: M3 done: `Zeros0to1000` passes the comparator (NanoDa + Lean kernel)
