@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Driver for the M4 build: for each range, the leg chunks and certificate modules with at most P
+# Driver for the full build (M3 and M4): for each range, the leg chunks and certificate modules with at most P
 # concurrent `lake build`s (scripts/build_limited.sh), then the legs' top modules, the window count
 # and the solution one at a time; finally Count10000Solution. Finished modules are skipped, so it
 # can be rerun after an interruption. P = 3 below 6000 and 2 above (about 8 GB per process near
@@ -15,6 +15,14 @@ rng() { a=$1; b=$2; P=$3; shift 3
   for leg in "$@"; do scripts/build_limited.sh 1 ZetaCert.Legs.$leg | grep FAIL; done
   scripts/build_limited.sh 1 ZetaCert.Windows.W${a}to${b} Zeros${a}to${b}Solution
 }
+# shared dependencies first, in one process (ZetaCert.BernTable alone takes about 10 GB)
+echo "== deps $(date +%T)"
+scripts/build_limited.sh 1 "ZetaCert.Window ZetaCert.Leg ZetaCert.Assembly ZetaCert.LegCertSound ZetaCert.OnLine"
+# range 0-1000 (certificates in ZetaCert/Zeros1000, leg ZetaCert/Leg1000)
+echo "== 0-1000 $(date +%T)"
+mods=""; for f in ZetaCert/Leg1000/L*.lean ZetaCert/Zeros1000/Z*.lean; do m=${f%.lean}; mods="$mods ${m//\//.}"; done
+scripts/build_limited.sh 3 $mods | grep FAIL
+scripts/build_limited.sh 1 ZetaCert.Leg1000 ZetaCert.Count1000 Zeros0to1000Solution
 rng 1000 2000 3 B1000 B2000
 rng 2000 3000 3 B3000
 rng 3000 4000 3 B4000U
