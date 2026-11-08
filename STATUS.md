@@ -25,8 +25,18 @@
 - The laptop comparator runs of 0–4000 and 9000–10000 used the old NanoDa; they confirm the Lean
   kernel only, as far as Palomar is concerned.
 
-Next step: NanoDa 0.4.17 on the new 0–1000 export; Palomar preflight of 0–1000; remaining
-preflight verdicts; then the time-limit plan (see below).
+- NanoDa 0.4.17 on the new 0–1000 export: exit 0 (4m44s, 2.9 GB). Palomar preflight of 0–1000
+  at 4fe103c started 21:34Z (run 42525910985).
+- Preflight verdicts (commit 595f365; seconds: build / comparator / con-ron, which always declines
+  after 1800 s; budget 19800 s):
+  - 1000–2000 pass: 3141 / 2851 / 1800 (7792 total)
+  - 2000–3000 pass: 3890 / 3920 / 1800 (9610)
+  - 3000–4000 pass (run 42509266169): 5025 / 6302 / 1800 (13127)
+  - 4000–5000 pass (run 42509268841): 4382 / 7949 / 1800 (14131)
+  - 9000–10000 fail (time), Count10000 fail (time, in build)
+  - 5000–9000: running (started 18:17Z)
+
+Next step: remaining preflight verdicts (5000–9000, new 0–1000); then the time-limit plan.
 
 ## 2026-11-08, morning: challenge headers; comparators two at a time
 
