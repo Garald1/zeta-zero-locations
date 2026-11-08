@@ -35,7 +35,20 @@
 - `Zeros3000to4000` (11:43–13:36, alongside Count10000): Lean kernel and NanoDa accept, "Your
   solution is okay!". Wall 1 h 54 min 15 s, user 10 953 s (165% CPU), peak RSS 6.8 GB.
 
-Next step: preflight verdicts; 4000to5000 comparator (started 13:37) and the remaining ranges;
+- **Palomar preflight results** (runs 42481719976 and 42481723441, commit 595f365):
+  - `Zeros9000to10000`: error `infrastructure/resource-exhausted`, kind timeout, in stage
+    `comparator`. `lake build Zeros9000to10000Solution` took 5 888 s wall (98 min; 22 993 CPU-s
+    on 4 vCPUs, peak 10.4 GB of the 16.4 GB cap, no OOM), export 41 s; the comparator then ran
+    out the remaining ~3.8 h of the 330-min budget (3 h 13 min on the laptop).
+  - `Count10000`: same error, already in stage `solution-build` (building all ten ranges).
+  - All other mechanical checks passed: licence, toolchain, module headers, challenge provenance
+    (imports only Mathlib), formalization.yaml (6 sources, result_origin source-based). Warning:
+    challenge source above the preferred 32 KiB / 300-line review surface.
+- 18:17Z: preflights started for the other nine ranges, to see which fit.
+
+Next step: preflight verdicts for all ranges; then a proposal to Harald (cheaper certificates,
+smaller ranges, a separate cheaper proof for Count10000, or a larger Palomar profile); 4000to5000
+comparator (started 13:37) and the remaining ranges;
 then, if needed, propose restructuring (smaller modules, cheaper certificates, Count10000 split).
 
 ## 2026-11-08, night: comparator passes `Zeros9000to10000` (module system)
