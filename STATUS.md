@@ -29,7 +29,10 @@
   `.github/workflows/palomar-preflight.yml` runs that exact workflow; started 12:45Z for
   9000to10000 and Count10000.
 
-Next step: preflight verdicts; 2000to3000 comparator (started 10:13) and the remaining ranges;
+- `Zeros2000to3000` (10:13–11:42, alongside Count10000): Lean kernel and NanoDa accept, "Your
+  solution is okay!". Wall 1 h 29 min 29 s, user 8 596 s (165% CPU), peak RSS 6.8 GB.
+
+Next step: preflight verdicts; 3000to4000 comparator (started 11:43) and the remaining ranges;
 then, if needed, propose restructuring (smaller modules, cheaper certificates, Count10000 split).
 
 ## 2026-11-08, night: comparator passes `Zeros9000to10000` (module system)
