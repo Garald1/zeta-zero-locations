@@ -1,6 +1,5 @@
-# DRAFT for Harald (2026-11-07), written by Claude Code from Palomar's CONTRIBUTING.md and the
-# upstream formalization.yaml v0.4 schema. Items marked TODO need Harald's decision. Literature
-# sources are deliberately not filled in: only references actually opened may be cited.
+# Written by Claude Code from Palomar's CONTRIBUTING.md and the upstream formalization.yaml v0.4
+# schema (re-read 2026-11-08). Items marked TODO need Harald's decision.
 # One file for all eleven Comparator configurations (challenge/comparator-*.json).
 version: v0.4
 
@@ -40,16 +39,54 @@ review:
   status: unchecked  # TODO(Harald): change if you review the statements/proofs before submitting
 
 sources:
-  # TODO(Harald): add literature sources (e.g. earlier computations of these zeros) with
-  # relationship "background". The origin rule needs exactly one of: an "original-proof"
-  # source (relationship "other", all other sources "background"/"other"), or a source with
-  # relationship formalizes/adapts/independently-proves.
-  - title: "Kernel-checked zero certificates and window counts (this repository)"
-    type: original-proof
-    relationship: other
+  # Origin rule (Palomar CONTRIBUTING): a new proof of a known result is source-based, with
+  # relationship independently-proves. Each entry below was opened (2026-11-08); the Platt 2017
+  # details are from its accepted manuscript (Bristol Research Portal) and Crossref.
+  - title: "Isolating some non-trivial zeros of zeta"
+    authors: ["David J. Platt"]
+    type: paper
+    id: "doi:10.1090/mcom/3198"
+    location: "Math. Comp. 86 (2017), no. 307, 2449-2467"
+    relationship: independently-proves
     note: >
-      The proof is a new computation: per-zero certificates evaluated by the Lean kernel and
-      counts by the argument principle; see PLAN.md and README.md.
+      Rigorously isolates the non-trivial zeros with imaginary part up to 30 610 046 000 to an
+      absolute precision of 2^-102, verifying RH to that height; this contains the results of every
+      configuration here, which re-prove them independently by kernel-checked certificates.
+  - title: "Computing pi(x) analytically"
+    authors: ["David J. Platt"]
+    type: paper
+    id: "doi:10.1090/S0025-5718-2014-02884-6"
+    location: "Math. Comp. 84 (2015), no. 293, 1521-1535"
+    relationship: background
+    note: "The algorithm the LMFDB credits for its database of zeta zeros."
+  - title: "LMFDB: zeros of the Riemann zeta function"
+    type: other
+    id: "https://www.lmfdb.org/zeros/zeta/"
+    relationship: background
+    note: >
+      The 103 800 788 359 zeros with imaginary part in (0, 30 610 046 000], computed by D. Platt,
+      stored to 2^-102, completeness checked by a rigorous version of Turing's method.
+  - title: "Tables of the first 15000 zeros of the Riemann zeta function to 28 significant digits, and related quantities"
+    authors: ["H. J. J. te Riele"]
+    type: other
+    id: "https://ir.cwi.nl/pub/9001"
+    location: "Report NW 67/79, Stichting Mathematisch Centrum, Amsterdam, 1979"
+    relationship: background
+  - title: "On the distribution of spacings between zeros of the zeta function"
+    authors: ["A. M. Odlyzko"]
+    type: paper
+    id: "doi:10.1090/S0025-5718-1987-0866115-0"
+    location: "Math. Comp. 48 (1987), no. 177, 273-308"
+    relationship: background
+    note: "Tables of zeros: https://www-users.cse.umn.edu/~odlyzko/zeta_tables/ (first 100 000 zeros to within 3e-9)."
+  - title: "Arb (now FLINT): acb_dirichlet_zeta_zeros"
+    type: other
+    id: "https://arblib.org/acb_dirichlet.html"
+    relationship: background
+    note: >
+      The listed ordinates in the challenge files were computed with acb_dirichlet_zeta_zeros
+      (160-bit ball arithmetic). They are candidate data only; the proofs re-check every bound in
+      the Lean kernel.
 
 related_formalizations:
   - id: teal-sea/zeta-lab
