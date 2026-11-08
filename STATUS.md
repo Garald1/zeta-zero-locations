@@ -1,5 +1,21 @@
 # STATUS (progress log; newest entry first)
 
+## 2026-11-08, late evening: 500-wide ranges for 7000–10000 (Harald's decision)
+
+- Harald agreed to split 7000–10000 into 500-wide ranges (and 6000–7000 too if its preflight passes
+  with < 30 min to spare). The 1000-wide challenge files stay (proved, kept for Count10000); the
+  halves are new challenges, same statements on (7000, 7500], ..., (9500, 10000]:
+  `scripts/gen_challenge.py` (RANGES), lakefile targets, 18.5–19.2 KiB each (under Palomar's
+  32 KiB warning). Existing challenge files regenerate byte-identically.
+- New legs at exactly 7500, 8500, 9500 (`gen_bleg.py`; arg bounds (−0.153, 0), (0, 0.765),
+  (−1.441, 0)); one leg serves both sides. Certificates `ZetaCert/Zeros<a>to<b>/Z0..Z11` per half
+  (`gen_zero_modules.py`, upper windows 64003/8 and 40001/4 as before); windows and solutions from
+  `gen_window.py` (margins ≥ 1.67 rad).
+- Local build started (scripts/build_limited.sh 3; about 5–6 h).
+
+Next step: build the halves; axioms; NanoDa 0.4.17 locally; Palomar preflights of the halves;
+remaining preflight verdicts (5000–9000, new 0–1000).
+
 ## 2026-11-08, evening: NanoDa 0.4.17 crash found and fixed for 0–1000
 
 - Palomar's verifier runs the NanoDa bundled with the toolchain (`nanoda_bin` 0.4.17 in

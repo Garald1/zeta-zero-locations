@@ -1,6 +1,6 @@
 name = "ZetaCert"
 version = "0.1.0"
-defaultTargets = ["ZetaCert", "Zeros0to1000", "Zeros1000to2000", "Zeros2000to3000", "Zeros3000to4000", "Zeros4000to5000", "Zeros5000to6000", "Zeros6000to7000", "Zeros7000to8000", "Zeros8000to9000", "Zeros9000to10000", "Count10000", "Zeros0to1000Solution", "Zeros1000to2000Solution", "Zeros2000to3000Solution", "Zeros3000to4000Solution", "Zeros4000to5000Solution", "Zeros5000to6000Solution", "Zeros6000to7000Solution", "Zeros7000to8000Solution", "Zeros8000to9000Solution", "Zeros9000to10000Solution", "Count10000Solution"]
+defaultTargets = ["ZetaCert", "Zeros0to1000", "Zeros1000to2000", "Zeros2000to3000", "Zeros3000to4000", "Zeros4000to5000", "Zeros5000to6000", "Zeros6000to7000", "Zeros7000to8000", "Zeros8000to9000", "Zeros9000to10000", "Count10000", "Zeros0to1000Solution", "Zeros1000to2000Solution", "Zeros2000to3000Solution", "Zeros3000to4000Solution", "Zeros4000to5000Solution", "Zeros5000to6000Solution", "Zeros6000to7000Solution", "Zeros7000to8000Solution", "Zeros8000to9000Solution", "Zeros9000to10000Solution", "Count10000Solution", "Zeros7000to7500", "Zeros7000to7500Solution", "Zeros7500to8000", "Zeros7500to8000Solution", "Zeros8000to8500", "Zeros8000to8500Solution", "Zeros8500to9000", "Zeros8500to9000Solution", "Zeros9000to9500", "Zeros9000to9500Solution", "Zeros9500to10000", "Zeros9500to10000Solution"]
 
 [leanOptions]
 pp.unicode.fun = true
@@ -169,3 +169,63 @@ roots = ["Zeros9000to10000Solution"]
 name = "Count10000Solution"
 srcDir = "solution"
 roots = ["Count10000Solution"]
+
+[[lean_lib]]
+name = "Zeros7000to7500"
+srcDir = "challenge"
+roots = ["Zeros7000to7500"]
+
+[[lean_lib]]
+name = "Zeros7500to8000"
+srcDir = "challenge"
+roots = ["Zeros7500to8000"]
+
+[[lean_lib]]
+name = "Zeros8000to8500"
+srcDir = "challenge"
+roots = ["Zeros8000to8500"]
+
+[[lean_lib]]
+name = "Zeros8500to9000"
+srcDir = "challenge"
+roots = ["Zeros8500to9000"]
+
+[[lean_lib]]
+name = "Zeros9000to9500"
+srcDir = "challenge"
+roots = ["Zeros9000to9500"]
+
+[[lean_lib]]
+name = "Zeros9500to10000"
+srcDir = "challenge"
+roots = ["Zeros9500to10000"]
+
+[[lean_lib]]
+name = "Zeros7000to7500Solution"
+srcDir = "solution"
+roots = ["Zeros7000to7500Solution"]
+
+[[lean_lib]]
+name = "Zeros7500to8000Solution"
+srcDir = "solution"
+roots = ["Zeros7500to8000Solution"]
+
+[[lean_lib]]
+name = "Zeros8000to8500Solution"
+srcDir = "solution"
+roots = ["Zeros8000to8500Solution"]
+
+[[lean_lib]]
+name = "Zeros8500to9000Solution"
+srcDir = "solution"
+roots = ["Zeros8500to9000Solution"]
+
+[[lean_lib]]
+name = "Zeros9000to9500Solution"
+srcDir = "solution"
+roots = ["Zeros9000to9500Solution"]
+
+[[lean_lib]]
+name = "Zeros9500to10000Solution"
+srcDir = "solution"
+roots = ["Zeros9500to10000Solution"]

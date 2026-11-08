@@ -1,0 +1,16 @@
+{
+  "challenge_module": "Zeros7000to7500",
+  "solution_module": "Zeros7000to7500Solution",
+  "theorem_names": [
+    "Zeros7000to7500.located",
+    "Zeros7000to7500.unique",
+    "Zeros7000to7500.count"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

@@ -7,6 +7,8 @@ The 10 142 ordinates up to 10^4 do not fit in one file, so the statements are sp
 * `Zeros{a}to{b}` for (a, b] = (0, 1000], (1000, 2000], ..., (9000, 10000]: every zero with
   a < Im s <= b is simple, on the critical line, and within 10^-20 of a listed ordinate; each
   listed interval holds exactly one zero; the number of such zeros.
+* `Zeros{a}to{b}` for the halves (7000, 7500], (7500, 8000], ..., (9500, 10000], the same
+  statements on 500-wide ranges (Palomar's time limit).
 * `Count10000`: every zero with 0 < Im s <= 10^4 is simple and on the line; there are 10 142.
 
 Each ordinate gamma_k (40 significant digits, Arb radius <= 1.2e-44) is stored as the integer
@@ -117,14 +119,20 @@ def config(ns, theorems):
         "enable_nanoda": True,
     }
 
+# The 1000-wide ranges, and 500-wide halves of the upper ones (Palomar's 330-min execution budget:
+# the 1000-wide ranges above 7000 do not fit; see STATUS.md, 2026-11-08).
+HALVES = (7000, 8000, 9000)
+RANGES = [(a, a + 1000) for a in range(0, 10000, 1000)] + \
+    [(a + h, a + h + 500) for a in HALVES for h in (0, 500)]
+
+
 def main():
     rows = load("data/zeros_T10000.txt")
     assert len(rows) == 10142
     os.makedirs("challenge", exist_ok=True)
     for old in glob.glob("challenge/*"):
         os.remove(old)
-    for a in range(0, 10000, 1000):
-        b = a + 1000
+    for a, b in RANGES:
         sel = [(k, g) for k, g in rows if a < float(g) <= b]
         # no ordinate within 10^-6 of a range boundary
         assert all(abs(float(g) - x) > 1e-6 for _, g in sel for x in (a, b))
