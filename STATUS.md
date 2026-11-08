@@ -32,7 +32,10 @@
 - `Zeros2000to3000` (10:13–11:42, alongside Count10000): Lean kernel and NanoDa accept, "Your
   solution is okay!". Wall 1 h 29 min 29 s, user 8 596 s (165% CPU), peak RSS 6.8 GB.
 
-Next step: preflight verdicts; 3000to4000 comparator (started 11:43) and the remaining ranges;
+- `Zeros3000to4000` (11:43–13:36, alongside Count10000): Lean kernel and NanoDa accept, "Your
+  solution is okay!". Wall 1 h 54 min 15 s, user 10 953 s (165% CPU), peak RSS 6.8 GB.
+
+Next step: preflight verdicts; 4000to5000 comparator (started 13:37) and the remaining ranges;
 then, if needed, propose restructuring (smaller modules, cheaper certificates, Count10000 split).
 
 ## 2026-11-08, night: comparator passes `Zeros9000to10000` (module system)
