@@ -12,7 +12,12 @@
   comparator (`Zeros0to1000`) runs alongside it; at most two at a time (about 7 GB peak each).
   Wall times measured this way are slightly pessimistic.
 
-Next step: record Count10000 and 0to1000 verdicts; then the remaining ranges, two at a time.
+- `Zeros0to1000` (re-run after the module port; 08:05–09:07, alongside Count10000): "nanoda kernel
+  accepts the solution", "Lean default kernel accepts the solution", "Your solution is okay!".
+  Wall 1 h 02 min 43 s, user 6 060 s, system 198 s (166% CPU), peak RSS 6.4 GB.
+- 09:08: `Zeros1000to2000` comparator started (alongside Count10000).
+
+Next step: record Count10000 and 1000to2000 verdicts; then 2000to3000 … 8000to9000, two at a time.
 
 ## 2026-11-08, night: comparator passes `Zeros9000to10000` (module system)
 
