@@ -45,6 +45,9 @@
     (imports only Mathlib), formalization.yaml (6 sources, result_origin source-based). Warning:
     challenge source above the preferred 32 KiB / 300-line review surface.
 - 18:17Z: preflights started for the other nine ranges, to see which fit.
+- `Zeros4000to5000` laptop comparator (13:37–16:16, alongside Count10000): Lean kernel and NanoDa
+  accept, "Your solution is okay!". Wall 2 h 39 min 43 s, user 16 037 s (173% CPU), peak 6.8 GB.
+  5000to6000 started 16:17.
 
 Next step: preflight verdicts for all ranges; then a proposal to Harald (cheaper certificates,
 smaller ranges, a separate cheaper proof for Count10000, or a larger Palomar profile); 4000to5000
