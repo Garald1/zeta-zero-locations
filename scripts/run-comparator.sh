@@ -10,6 +10,6 @@ cfg=$(cd "$(dirname "$1")" && pwd)/$(basename "$1")
 cd "$root"
 PALOMAR_LANDRUN_BIN="$C/bin/landrun" \
 COMPARATOR_LEAN4EXPORT="$C/lean4export/.lake/build/bin/lean4export" \
-COMPARATOR_NANODA="$C/nanoda/target/release/nanoda_bin" \
+COMPARATOR_NANODA="${COMPARATOR_NANODA:-$C/nanoda/target/release/nanoda_bin}" \
 COMPARATOR_LANDRUN="$root/scripts/landrun-wrapper.sh" \
   lake env "$C/comparator/.lake/build/bin/comparator" "$cfg"

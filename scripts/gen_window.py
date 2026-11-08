@@ -16,7 +16,8 @@ from gen_primedata import entry, L2
 mp.dps = 60
 # boundary legs: B -> (lower-end leg, upper-end leg), each (name, num, den)
 LEGS = {
-    1000: (('B1000', 1000, 1), None),
+    0: (('B3', 3, 1), None),
+    1000: (('B1000', 1000, 1), ('B1000U', 32015, 32)),
     2000: (('B2000', 2000, 1), ('B2000', 2000, 1)),
     3000: (('B3000', 3000, 1), ('B3000', 3000, 1)),
     4000: (('B4000L', 15999, 4), ('B4000U', 16003, 4)),
@@ -34,6 +35,10 @@ Ln, Lnum, Lden = LEGS[A][0]
 Un, Unum, Uden = LEGS[B][1]
 L, U = Fr(Lnum, Lden), Fr(Unum, Uden)
 T = f'{A}to{B}'
+LOW = A == 0
+RA = 3 if LOW else A
+if LOW:
+    assert L == 3
 chal = open(f'challenge/Zeros{T}.lean').read()
 
 # the zeros
@@ -135,10 +140,51 @@ for cn in chunk_names:
 assert sum(sizes) == len(ords)
 cL = math.ceil(L * 10**24)
 cU = math.floor(U * 10**24)
+if LOW:
+    LOWLEMMA = """/-- No zero of `ζ` with `0 < Im s ≤ 3` (zeta-lab's `riemannZeta_ne_zero_of_im_le_three`, and
+nontrivial zeros lie in the open strip). -/
+theorem low {s : ℂ} (hz : riemannZeta s = 0) (h0 : 0 < s.im) (h3 : s.im ≤ 3) : False := by
+  obtain ⟨r0, r1⟩ := ZetaCert.Assembly.re_strip hz h0
+  exact RHHeight.riemannZeta_ne_zero_of_im_le_three r0 r1 h0 h3 hz
+
+"""
+    LOCATED = """  rintro s ⟨hz, ha, hb⟩
+  by_cases h3 : s.im ≤ 3
+  · exact (low hz ha h3).elim
+  push Not at h3
+  exact ZetaCert.Window.range_located whyp rhyp s hz (by exact_mod_cast h3) (by exact_mod_cast hb)
+"""
+    COUNT = f"""  have h := ZetaCert.Window.range_count whyp rhyp
+  push_cast at h
+  have e : zerosBetween 0 {B} = {{s : ℂ | riemannZeta s = 0 ∧ (3 : ℝ) < s.im ∧ s.im ≤ {B}}} := by
+    ext s
+    simp only [zerosBetween, Set.mem_setOf_eq]
+    constructor
+    · rintro ⟨hz, h0, h1⟩
+      refine ⟨hz, ?_, h1⟩
+      by_contra h
+      push Not at h
+      exact low hz h0 h
+    · rintro ⟨hz, h3, h1⟩
+      exact ⟨hz, by linarith, h1⟩
+  rw [e, h, hlen]
+"""
+else:
+    LOWLEMMA = ""
+    LOCATED = """  rintro s ⟨hz, ha, hb⟩
+  exact ZetaCert.Window.range_located whyp rhyp s hz (by exact_mod_cast ha) (by exact_mod_cast hb)
+"""
+    COUNT = """  have h := ZetaCert.Window.range_count whyp rhyp
+  push_cast at h
+  unfold zerosBetween
+  rw [h, hlen]
+"""
 with open(f'solution/Zeros{T}Solution.lean', 'w') as f:
     f.write(hdr)
     f.write("import ZetaCert.Window\n")
     f.write(f"import ZetaCert.Windows.W{T}\n")
+    if LOW:
+        f.write("import RHHeight.LowHeight\n")
     for j in range(nmods):
         f.write(f"import ZetaCert.Zeros{T}.Z{j}\n")
     f.write(f"""
@@ -203,9 +249,9 @@ theorem whyp : ZetaCert.Window.WHyp ws {Lr} {Ur} {cL} {cU} :=
   ⟨hP, hsep, hrange, by norm_num, by norm_num, by norm_num,
     by rw [hlenws, ZetaCert.Windows.W{T}.ncount]⟩
 
-theorem rhyp : ZetaCert.Window.RHyp [] ordinates post {A} {B} {Lr} {Ur} := by
+{LOWLEMMA}theorem rhyp : ZetaCert.Window.RHyp [] ordinates post {RA} {B} {Lr} {Ur} := by
   refine ⟨by norm_num, by norm_num, ?_, by simp, ?_⟩
-  · have h : ordinates.all (fun m => decide ({A} * 10 ^ 24 + 10 ^ 5 < m ∧ m + 10 ^ 5 < {B} * 10 ^ 24)) = true := by
+  · have h : ordinates.all (fun m => decide ({RA} * 10 ^ 24 + 10 ^ 5 < m ∧ m + 10 ^ 5 < {B} * 10 ^ 24)) = true := by
       decide +kernel
     intro m hm
     simpa using List.all_eq_true.mp h m hm
@@ -218,9 +264,7 @@ ordinate within `10⁻²⁰` of `m / 10²⁴` for some `m` in the list. -/
 theorem located :
     ∀ s ∈ zerosBetween {A} {B}, s.re = 1 / 2 ∧ analyticOrderAt riemannZeta s = 1 ∧
       ∃ m ∈ ordinates, |s.im - (m : ℝ) / 10 ^ 24| ≤ 1 / 10 ^ 20 := by
-  rintro s ⟨hz, ha, hb⟩
-  exact ZetaCert.Window.range_located whyp rhyp s hz (by exact_mod_cast ha) (by exact_mod_cast hb)
-
+{LOCATED}
 /-- For each listed `m`, exactly one zero of `ζ` has its ordinate within `10⁻²⁰` of `m / 10²⁴`. -/
 theorem unique :
     ∀ m ∈ ordinates, ∃! s : ℂ, riemannZeta s = 0 ∧ |s.im - (m : ℝ) / 10 ^ 24| ≤ 1 / 10 ^ 20 :=
@@ -228,11 +272,7 @@ theorem unique :
 
 /-- There are exactly {len(ords)} zeros of `ζ` with `{A} < Im s ≤ {B}`. -/
 theorem count : (zerosBetween {A} {B}).ncard = {len(ords)} := by
-  have h := ZetaCert.Window.range_count whyp rhyp
-  push_cast at h
-  unfold zerosBetween
-  rw [h, hlen]
-
+{COUNT}
 end Zeros{T}
 """)
 print("wrote", f'ZetaCert/Windows/W{T}.lean', f'solution/Zeros{T}Solution.lean', nmods, "certificate modules expected")

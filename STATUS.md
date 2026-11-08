@@ -1,5 +1,33 @@
 # STATUS (progress log; newest entry first)
 
+## 2026-11-08, evening: NanoDa 0.4.17 crash found and fixed for 0–1000
+
+- Palomar's verifier runs the NanoDa bundled with the toolchain (`nanoda_bin` 0.4.17 in
+  `~/.elan/toolchains/leanprover--lean4---v4.35.0-rc2/bin`), not the 0.4.6-beta (68d5ca9) that
+  `scripts/run-comparator.sh` used (as IEANTN's verify-comparator.sh does). Preflight of
+  0to1000 (run 42509257052): Lean kernel accepts, NanoDa "thread 'thread_2' has overflowed its
+  stack" (kernel_disagreement). Reproduced locally (`COMPARATOR_NANODA=<bundled>` now accepted by
+  run-comparator.sh; or nanoda_bin directly on a lean4export file: 26 s).
+- Bisection with lean4export + nanoda_bin on single declarations: the overflow is in zeta-lab's
+  interval-arithmetic `decide +kernel` proofs (e.g. `RHHeight.Legs.H100S1.tab_eq_2`, under
+  `RHHeight100.horizontalLegs100`), used only by the old 0–1000 count (Count1000 / Assembly from
+  height 100). Our certificates, legs and logs pass; the 1000–2000 export (no zeta-lab interval
+  code) passes NanoDa 0.4.17 in full (13 min wall, 4 threads, 3.0 GB).
+- Fix (solution side only; challenge files untouched): 0–1000 now uses the same window machinery
+  as the other ranges, with the window (3, 32015/32]: no zero with 0 < Im s ≤ 3 (zeta-lab's
+  `RHHeight.riemannZeta_ne_zero_of_im_le_three`, an analytic proof that passes NanoDa 0.4.17), new
+  legs `ZetaCert.Legs.B3` and `B1000U` (no zero in (1000, 32015/32]), `ZetaCert/LegLow.lean`
+  (`seg_of_lc3`: `seg_of_lc` with `3 ≤ T` instead of `10 ≤ T`), certificates regenerated in
+  `ZetaCert/Zeros0to1000/Z0..Z12`; window margins 0.93 and 1.11 rad. `gen_bleg.py` (heights
+  3 ≤ T < 10) and `gen_window.py` (A = 0) extended; regenerating 1000–2000 gives identical files.
+  `lake build Zeros0to1000Solution` clean (13 min), axioms propext/Classical.choice/Quot.sound;
+  the export no longer contains zeta-lab interval code.
+- The laptop comparator runs of 0–4000 and 9000–10000 used the old NanoDa; they confirm the Lean
+  kernel only, as far as Palomar is concerned.
+
+Next step: NanoDa 0.4.17 on the new 0–1000 export; Palomar preflight of 0–1000; remaining
+preflight verdicts; then the time-limit plan (see below).
+
 ## 2026-11-08, morning: challenge headers; comparators two at a time
 
 - With Harald's go-ahead, the stale "DRAFT ... has NOT been elaborated yet" lines at the top of
