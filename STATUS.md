@@ -15,9 +15,22 @@
 - `Zeros0to1000` (re-run after the module port; 08:05–09:07, alongside Count10000): "nanoda kernel
   accepts the solution", "Lean default kernel accepts the solution", "Your solution is okay!".
   Wall 1 h 02 min 43 s, user 6 060 s, system 198 s (166% CPU), peak RSS 6.4 GB.
-- 09:08: `Zeros1000to2000` comparator started (alongside Count10000).
+- `Zeros1000to2000` (09:08–10:12, alongside Count10000): Lean kernel and NanoDa accept, "Your
+  solution is okay!". Wall 1 h 04 min 08 s, user 6 124 s (164% CPU), peak RSS 6.9 GB.
+- Repository made public (Harald's go-ahead). formalization.yaml: sources filled in from pages
+  actually opened (Platt 2017 `independently-proves`, per Palomar's origin rule; Platt 2015, LMFDB,
+  te Riele 1979, Odlyzko 1987, Arb as background); passes the upstream v0.4 schema.
+- **Palomar's verifier limits** (PalomarSubmission@14aa8d6, verification-profile.json and
+  scripts/verify_submission.py, read 2026-11-08): profile palomar-standard-v1 = GitHub-hosted
+  ubuntu-24.04, job timeout 350 min, execution budget 19 800 s (330 min) covering `lake build
+  <solution_module>` from fresh .lake (Mathlib from cache), export, Comparator (Lean kernel +
+  NanoDa) and con-ron; memory max 98% of the host. Count10000 cannot fit as structured; the large
+  ranges are borderline (build memory too: ~8 GB per heavy module at 4-way parallelism).
+  `.github/workflows/palomar-preflight.yml` runs that exact workflow; started 12:45Z for
+  9000to10000 and Count10000.
 
-Next step: record Count10000 and 1000to2000 verdicts; then 2000to3000 … 8000to9000, two at a time.
+Next step: preflight verdicts; 2000to3000 comparator (started 10:13) and the remaining ranges;
+then, if needed, propose restructuring (smaller modules, cheaper certificates, Count10000 split).
 
 ## 2026-11-08, night: comparator passes `Zeros9000to10000` (module system)
 
