@@ -14,7 +14,7 @@
 - Local build started (scripts/build_limited.sh 3; about 5–6 h).
 
 Next step: build the halves; axioms; NanoDa 0.4.17 locally; Palomar preflights of the halves;
-remaining preflight verdicts (5000–9000, new 0–1000).
+then submissions.
 
 ## 2026-11-08, evening: NanoDa 0.4.17 crash found and fixed for 0–1000
 
@@ -49,8 +49,14 @@ remaining preflight verdicts (5000–9000, new 0–1000).
   - 2000–3000 pass: 3890 / 3920 / 1800 (9610)
   - 3000–4000 pass (run 42509266169): 5025 / 6302 / 1800 (13127)
   - 4000–5000 pass (run 42509268841): 4382 / 7949 / 1800 (14131)
+  - 5000–6000 pass (run 42509272029): 5826 / 9627 / 1800 (17253)
+  - 6000–7000 pass (run 42509275120): 4192 / 9843 / 1800 (15835)
+  - 7000–8000 pass (run 42509278360): 4969 / 12785 / 1582 (19336; con-ron cut short, 7 min spare)
+  - 8000–9000 fail (run 42509281204): build 5332, then "supervised workload exceeded its deadline"
   - 9000–10000 fail (time), Count10000 fail (time, in build)
-  - 5000–9000: running (started 18:17Z)
+  - 0–1000 at 4fe103c pass (run 42525910985): 3683 / 1325 / 1800 (6808)
+- So 0–7000 fit at full width (6000–7000 with 66 min spare: not split). 7000–8000 passed with
+  only 7 min spare; its halves are still built, to submit whichever Harald prefers.
 
 Next step: remaining preflight verdicts (5000–9000, new 0–1000); then the time-limit plan.
 
