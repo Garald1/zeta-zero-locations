@@ -1,5 +1,17 @@
 # STATUS (progress log; newest entry first)
 
+## 2026-11-08, night: comparator passes `Zeros9000to10000` (module system)
+
+- `scripts/run-comparator.sh challenge/comparator-Zeros9000to10000.json` (21:10–00:23, nothing else
+  running): "nanoda kernel accepts the solution", "Lean default kernel accepts the solution",
+  "Your solution is okay!". Wall 3 h 12 min 43 s, user 20 760 s, system 890 s (187% CPU), peak
+  RSS 6.9 GB. The log shows nothing between "Running nanoda" and the final lines (output is
+  buffered); the Lean-kernel replay runs single-threaded inside the comparator process.
+- This is the heaviest range. If Palomar's runner has GitHub's 6-hour job limit (its limits are not
+  published), single ranges should fit; Count10000 replays all ten ranges and probably will not.
+
+Next step: comparator on Count10000 (measure; likely 10–20 h), then the other nine ranges.
+
 ## 2026-11-07, evening: all eleven statements proved under the module system (comparator runs next)
 
 - `scripts/build_m4.sh` rebuilt everything under the module system (11:36–21:09; the CPU was in
