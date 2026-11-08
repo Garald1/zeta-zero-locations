@@ -1,5 +1,24 @@
 # STATUS (progress log; newest entry first)
 
+## 2026-11-07, evening: all eleven statements proved under the module system (comparator runs next)
+
+- `scripts/build_m4.sh` rebuilt everything under the module system (11:36–21:09; the CPU was in
+  the `power-saver` profile until about 13:35, after that 21–38 min per range below 7000, about
+  1.5–2 h per range above, at 2 processes). The never-before-built solutions 7000–8000,
+  8000–9000 and 9000–10000 compiled on the first try; `Count10000Solution` needed one fix
+  (`Set.ncard_union_eq` takes the finiteness proofs as auto-parameters).
+- **All eleven challenge statements are proved**: `lake build` (default targets now all challenge
+  and solution libraries) completes successfully; `#print axioms` (solution/CheckAxioms*.lean)
+  gives `[propext, Classical.choice, Quot.sound]` for all 32 theorems; no `sorry` in ZetaCert/ or
+  solution/. Comparator: toy pair passes after the port; the ranges and Count10000 not yet run
+  under the module system (0–1000 passed before the port).
+- `module-port` merged into main.
+
+Next step: comparator runs, one at a time, nothing else running: 9000–10000 first (time and
+memory decide whether Palomar's verifier is likely to cope), then Count10000 (replays everything),
+then the other nine. Harald: TODOs in formalization.yaml; confirm the module headers in
+challenge/ as a syntax-only change.
+
 ## 2026-11-07, midday: module-system port (Palomar requirement); full rebuild running
 
 - Palomar's CONTRIBUTING.md (§2.1 "Lean source requirements", read 2026-11-07, with

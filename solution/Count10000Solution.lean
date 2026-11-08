@@ -46,12 +46,13 @@ theorem split {a b c : ℝ} (hab : a ≤ b) (hbc : b ≤ c) :
 theorem card_split {a b c : ℝ} (hab : a ≤ b) (hbc : b ≤ c) {m n : ℕ}
     (h1 : (zerosBetween a b).ncard = m) (h2 : (zerosBetween b c).ncard = n) (hm : 0 < m) (hn : 0 < n) :
     (zerosBetween a c).ncard = m + n := by
-  rw [split hab hbc, Set.ncard_union_eq, h1, h2]
-  · rw [Set.disjoint_left]
+  have hd : Disjoint (zerosBetween a b) (zerosBetween b c) := by
+    rw [Set.disjoint_left]
     rintro s ⟨-, -, h⟩ ⟨-, h', -⟩
     linarith
-  · exact Set.finite_of_ncard_pos (by omega)
-  · exact Set.finite_of_ncard_pos (by omega)
+  have f1 : (zerosBetween a b).Finite := Set.finite_of_ncard_pos (by omega)
+  have f2 : (zerosBetween b c).Finite := Set.finite_of_ncard_pos (by omega)
+  rw [split hab hbc, Set.ncard_union_eq hd f1 f2, h1, h2]
 
 /-- Every zero of `ζ` with `0 < Im s ≤ 10000` is simple and lies on the critical line. -/
 theorem on_line_and_simple :
