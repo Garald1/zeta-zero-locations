@@ -1,5 +1,19 @@
 # STATUS (progress log; newest entry first)
 
+## 2026-11-08, morning: challenge headers; comparators two at a time
+
+- With Harald's go-ahead, the stale "DRAFT ... has NOT been elaborated yet" lines at the top of
+  every `challenge/*.lean` (and in `scripts/gen_challenge.py`) were replaced by a note that the file
+  elaborates against the pinned Mathlib and that the only change to the draft statement is the
+  module-system header (checked with `git diff` against the imported handoff). Comment only; all
+  eleven challenge modules rebuilt cleanly.
+- Count10000 comparator (started 00:24) still running at 08:00: NanoDa phase over, Lean-kernel
+  replay in progress (single-threaded, 2.2 GB). At Harald's request to use the idle cores, a second
+  comparator (`Zeros0to1000`) runs alongside it; at most two at a time (about 7 GB peak each).
+  Wall times measured this way are slightly pessimistic.
+
+Next step: record Count10000 and 0to1000 verdicts; then the remaining ranges, two at a time.
+
 ## 2026-11-08, night: comparator passes `Zeros9000to10000` (module system)
 
 - `scripts/run-comparator.sh challenge/comparator-Zeros9000to10000.json` (21:10–00:23, nothing else
