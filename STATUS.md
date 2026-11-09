@@ -23,8 +23,14 @@
   Build + comparator leave 30–33 min of the 330-min budget for 8500–9000 and 9500–10000 (about
   the same as 7000–8000 at full width: 34 min); the halves are slower than half of a full range
   (fixed costs, runner variance).
+- Relaunched runs pass: 7000–7500 5602 / 8808 / 1800; 7500–8000 3411 / 9751 / 1800;
+  8000–8500 4463 / 10305 / 1800 (51–84 min left after build + comparator).
+- All ranges now pass Palomar's preflight: 0–7000 and 7000–8000 at full width, 7000–10000 as halves.
+  Plan (pending Harald): submit 0–1000, ..., 7000–8000 (full) and the halves 8000–10000; Count10000
+  needs a larger execution profile.
 
-Next step: preflight verdicts of the six halves; then submissions.
+Next step: Harald's choices (7000–8000 full or halves; review.status); README; final SHA;
+submissions one at a time.
 
 ## 2026-11-08, evening: NanoDa 0.4.17 crash found and fixed for 0–1000
 
