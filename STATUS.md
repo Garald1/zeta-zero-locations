@@ -14,7 +14,11 @@
 - Local build: stopped once by Claude Code for low memory (73/114 modules done), restarted at
   P = 2; all modules and the six solutions built cleanly by 06:09Z on 2026-11-09. `#print axioms`
   on located/unique/count of each half: propext, Classical.choice, Quot.sound only.
-- Palomar preflights of the six halves started 2026-11-09 (NanoDa 0.4.17 runs there).
+- Palomar preflights of the six halves started 06:10Z on 2026-11-09 (NanoDa 0.4.17 runs there).
+  7000–7500, 7500–8000, 8000–8500 failed in setup within 5 min (GitHub download errors, HTTP 504,
+  fetching elan and bubblewrap; nothing reached our code); relaunched 10:50Z (runs 42603918600,
+  42603923716, 42603928964). 8500–9000, 9000–9500, 9500–10000 (runs 42571441997, 42571446032,
+  42571450286) are in the comparator step.
 
 Next step: preflight verdicts of the six halves; then submissions.
 
