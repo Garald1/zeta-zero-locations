@@ -26,10 +26,10 @@
 - Relaunched runs pass: 7000–7500 5602 / 8808 / 1800; 7500–8000 3411 / 9751 / 1800;
   8000–8500 4463 / 10305 / 1800 (51–84 min left after build + comparator).
 - All ranges now pass Palomar's preflight: 0–7000 and 7000–8000 at full width, 7000–10000 as halves.
-  Plan (pending Harald): submit 0–1000, ..., 7000–8000 (full) and the halves 8000–10000; Count10000
-  needs a larger execution profile.
+  Harald's decision (2026-11-09): submit 0–1000, ..., 6000–7000 (full) and the six halves
+  7000–7500, ..., 9500–10000 (12 submissions); Count10000 needs a larger execution profile.
 
-Next step: Harald's choices (7000–8000 full or halves; review.status); README; final SHA;
+Next step: review.status (Harald); README; final SHA;
 submissions one at a time.
 
 ## 2026-11-08, evening: NanoDa 0.4.17 crash found and fixed for 0–1000
