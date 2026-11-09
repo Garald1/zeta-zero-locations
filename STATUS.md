@@ -11,10 +11,12 @@
   (−1.441, 0)); one leg serves both sides. Certificates `ZetaCert/Zeros<a>to<b>/Z0..Z11` per half
   (`gen_zero_modules.py`, upper windows 64003/8 and 40001/4 as before); windows and solutions from
   `gen_window.py` (margins ≥ 1.67 rad).
-- Local build started (scripts/build_limited.sh 3; about 5–6 h).
+- Local build: stopped once by Claude Code for low memory (73/114 modules done), restarted at
+  P = 2; all modules and the six solutions built cleanly by 06:09Z on 2026-11-09. `#print axioms`
+  on located/unique/count of each half: propext, Classical.choice, Quot.sound only.
+- Palomar preflights of the six halves started 2026-11-09 (NanoDa 0.4.17 runs there).
 
-Next step: build the halves; axioms; NanoDa 0.4.17 locally; Palomar preflights of the halves;
-then submissions.
+Next step: preflight verdicts of the six halves; then submissions.
 
 ## 2026-11-08, evening: NanoDa 0.4.17 crash found and fixed for 0–1000
 
