@@ -18,7 +18,11 @@
   7000–7500, 7500–8000, 8000–8500 failed in setup within 5 min (GitHub download errors, HTTP 504,
   fetching elan and bubblewrap; nothing reached our code); relaunched 10:50Z (runs 42603918600,
   42603923716, 42603928964). 8500–9000, 9000–9500, 9500–10000 (runs 42571441997, 42571446032,
-  42571450286) are in the comparator step.
+  42571450286) pass (seconds: build / comparator / con-ron, which gets whatever budget is left):
+  8500–9000 6358 / 11629 / 1323; 9000–9500 4940 / 9688 / 1800; 9500–10000 5323 / 12494 / 1430.
+  Build + comparator leave 30–33 min of the 330-min budget for 8500–9000 and 9500–10000 (about
+  the same as 7000–8000 at full width: 34 min); the halves are slower than half of a full range
+  (fixed costs, runner variance).
 
 Next step: preflight verdicts of the six halves; then submissions.
 
