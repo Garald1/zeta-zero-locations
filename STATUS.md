@@ -1,5 +1,23 @@
 # STATUS (progress log; newest entry first)
 
+## 2026-11-14: Count10000 comparator — old run has no verdict; rerun with NanoDa 0.4.17
+
+- The laptop run started 2026-11-08 at 00:24 (old NanoDa 0.4.6-beta 68d5ca9; Claude Code task
+  bw1uvjx0n) has **no verdict**. Its log (scratchpad `comp-count.log`) last read, at 05:30Z and
+  again at 22:32Z on 2026-11-08: `Build completed successfully (9467 jobs)`, the export list, then
+  `Running nanoda kernel on solution` — no "accepts"/"rejects" line. Claude Code stopped it for
+  low system memory at about 01:25Z on 2026-11-09 (other projects' builds running), after about
+  25 h. The log itself is gone (the laptop rebooted; /tmp cleared).
+- Correction: the entry below saying "NanoDa phase over, Lean-kernel replay in progress" at 08:00
+  on 2026-11-08 was not supported by the log, which never got past `Running nanoda kernel on
+  solution`.
+- Rerun started 2026-11-14 at commit a245477 with the toolchain-bundled NanoDa 0.4.17 (the one
+  Palomar uses), nothing else heavy running; log in `.cache/logs/comparator-Count10000-a245477.log`
+  (not in git). This also rebuilds `Count10000Solution` against the new `Zeros0to1000Solution`.
+
+Next step: Count10000 comparator verdict; review.status (Harald); README; final SHA;
+submissions one at a time.
+
 ## 2026-11-08, late evening: 500-wide ranges for 7000–10000 (Harald's decision)
 
 - Harald agreed to split 7000–10000 into 500-wide ranges (and 6000–7000 too if its preflight passes
